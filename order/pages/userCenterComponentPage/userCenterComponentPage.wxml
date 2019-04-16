@@ -1,0 +1,211 @@
+<view class="app" hidden="{{page_hidden}}">
+
+  <template name="zcUserCenter">
+    <view class="user-center usercenter-mode1 background-ele {{ data.customFeature['with-horizontal'] ? 'with-horizontal-view': '' }}" style="{{data.style}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
+      <view class='user-data-show' style="height:{{usercenterWxsModule.changeValue(data.customFeature.height)}}rpx;" wx:if="{{!data.customFeature.isHiddenComponent}}">
+        <view wx:for="{{data.customFeature.showDataBlock[0].blockArr}}" class="user-data-show-item" style="width:calc(100% / {{data.customFeature.colums}})" bindtap="{{item.bindtap}}" data-router="{{item.router}}" wx:key="" wx:for-index="index">
+          <view style="width:100%">
+            <view style="color:#686868;font-size:36rpx;font-weight:bold;">{{data.userData[item.feild]}}
+              <text class="coupon-prompt" wx:if="{{data.userData.cross_add_coupon_mark >0 && item.feild=='coupon_count'}}"></text>
+              <text wx:if="{{item.feild=='coupon_count'}}">张</text>
+              <text wx:if="{{item.feild=='balance'}}">元</text>
+            </view>
+            <view style="color:#999999;font-size:24rpx">{{item.name}}</view>
+          </view>
+          <view class="user-data-dvline" wx:if="{{index != data.customFeature.showDataBlock[0].blockArr.length-1}}">
+            <view class='dvline-content'></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="integral-platform" catchtap="vipCardTurnToPage" data-type="differential-mall" wx:if="{{data.customFeature.isShowIntegral && data.userData.xcx_differential_entry}}">
+        <view class=" ico-moon icon-differential-tag icon-container-cover icon-differentail-color"></view>
+        <text class="integral-platform-title">微分商城</text>
+        <text class="integral-platform-content">海量商家优惠券等你去领！</text>
+        <view class="integral-platform-right">
+          <text class="integral-platform-prompt" wx:if="{{data.userData.cross_add_differential_mark >0}}"></text>
+          <view class="ico-moon icon-rightarrow icon-container-cover"></view>
+        </view>
+      </view>
+
+      <view class="user-center-content">
+        <view class="block-name" style="font-size: {{item['font-size']}};">拼团订单</view>
+        <block wx:for="{{data.content}}" wx:for-item="item" wx:key="" wx:for-index="i">
+          <view class="usercenter-block" style="{{'color: ' + item.color +'; margin-top:' + (item['margin-top'] || '10px') +'; ' + (item['background-image'] ? 'background-image: '+ item['background-image'] +'; ' : 'background-color:' + (item['background-color'] || '#fff') + ';')+ 'text-decoration: '+ (item['text-decoration'] || '')+'; font-style:'+ (item['font-style'] || '') + '; font-weight:'+ (item['font-weight'] || '') + '; opacity:' + (item['opacity'] || 1) }}">
+              <view class="block-detail" style="color: {{item.color || 'rgb(89, 96, 123)'}};line-height:{{item['line-height']}};">
+              <block wx:for="{{item.blockArr}}" wx:key="" wx:for-item="blockItem" wx:for-index="j">
+                <view class="block-item mode-one" bindtap="{{blockItem.bindtap}}" data-need-collect-info="{{data.userData.need_collect_info}}" data-router="{{blockItem.router}}" data-open-verify-phone="{{blockItem.openVerifyPhone || false}}" wx:if="{{item.mode == 1 || !item.mode}}"
+                  style="text-align: center;display:inline-block;width: calc(100% / {{item.col}});" data-event-params="{{blockItem.param}}">
+                  <view style="line-height:normal;">
+                    <view style="position: relative;width:{{item.imgHeight}}; height: {{item.imgHeight}};margin: 0 auto;">
+                      <view wx:if="{{!blockItem.custom}}" style="font-size: {{item.imgHeight}};font-style:normal;" class="ico-moon {{blockItem.icon}}  {{data.customFeature.iconType=='2'?'':(i+1)%5==1 || (i+1)%5 == 4?'color-1-4':(i+1)%5==2 || (i+1)%5 == 0?'color-2-5':(i+1)%5 == 3 ?'color-3':''}}"></view>
+                      <image wx:if="{{blockItem.custom}}" src="{{blockItem.custom}}" style="width:{{item.imgHeight}}; height: {{item.imgHeight}}"></image>
+                      <text class="orderCount" wx:if="{{blockItem.count}}" style="left: calc({{item.imgHeight}} - 7px);background-color: {{storeStyle.theme}};">{{blockItem.count}}</text>
+                    </view>
+                    <text style="font-size:{{item['font-size']}};text-decoration: {{item['text-decoration'] || ''}}">{{blockItem.name}}</text>
+                  </view>
+                </view>
+                <view wx:else class="mode-two" bindtap="{{blockItem.bindtap}}" data-router="{{blockItem.router}}" data-open-verify-phone="{{blockItem.openVerifyPhone}}" style="height: {{item.height}};line-height: {{item.height}};" data-event-params="{{blockItem.param}}">
+                  <view style="position: relative;width:{{item.imgHeight}}; height: {{item.imgHeight}};margin: 0 auto;display: inline-block;vertical-align:middle;margin-left:40rpx;margin-right: 20rpx;">
+                    <view wx:if="{{!blockItem.custom}}" style="font-style:normal;line-height:{{item.imgHeight}};font-size: {{item.imgHeight}};width:{{item.imgHeight}};height:{{item.imgHeight}};vertical-align:top;" class="ico-moon {{blockItem.icon}} {{data.customFeature.iconType=='2'?'':(i+1)%5==1 || (i+1)%5 == 4?'color-1-4':(i+1)%5==2 || (i+1)%5 == 0?'color-2-5':(i+1)%5 == 3 ?'color-3':''}}"></view>
+                    <image wx:if="{{blockItem.custom}}" src="{{blockItem.custom}}" style="width:{{item.imgHeight}}; height: {{item.imgHeight}};vertical-align:top;"></image>
+                    <text class="orderCount" wx:if="{{blockItem.count}}" style="left: calc({{item.imgHeight}} - 7px);background-color: {{storeStyle.theme}};">{{blockItem.count}}</text>
+                  </view>
+                  <text style="vertical-align:middle;font-size: {{item['font-size']}};">{{blockItem.name}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+      <block wx:if="{{ data.customFeature['appendComponent'] }}">
+        <view class="horizontal-view">
+          <view class="horizontal-router-container1">
+            <block>
+              <wxs module="myOrder">
+                var isMyorder = function(data) {
+                  return data.customFeature.appendComponent.indexOf('myOrder') >= 0 ? true : false;
+                }
+                module.exports.isMyorder = isMyorder;
+              </wxs>
+              <view wx:if="{{ myOrder.isMyorder(data) && data.customFeature.orderType == undefined}}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/myOrder/myOrder" data-goods-type="{{ data.customFeature.orderType }}" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myOrder']['openVerifyPhone'] }}"
+                style="margin-top: {{ data.customFeature.appendComponentAttr['myOrder']['margin-top'] }}">
+                <label class="ico-moon icon-notebook"></label>
+                <text>我的订单</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ myOrder.isMyorder(data) && data.customFeature.orderType == 0}}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/myOrder/myOrder" data-goods-type="{{ data.customFeature.orderType }}" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myOrder']['openVerifyPhone'] }}"
+                style="margin-top: {{ data.customFeature.appendComponentAttr['myOrder']['margin-top'] }}" class="orderTypeStyle">
+                <view class="myorderSubmenu" data-index="0">
+                  <text data-index="0">我的订单</text>
+                  <label class="ico-moon icon-rightarrow" data-index="0"></label>
+                </view>
+                <view class="orderSubmenu">
+                  <view data-index="1">
+                    <text class="ico-moon icon-pendingPayment" data-index="1"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[0] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[0] }}</view>待付款</view>
+                  <view data-index="2">
+                    <text class="ico-moon icon-beDelivered" data-index="2"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[1] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[1] }}</view>待发货</view>
+                  <view data-index="3">
+                    <text class="ico-moon icon-beReceived" data-index="3"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[2] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[2] }}</view>待收货</view>
+                  <view data-index="4">
+                    <text class="ico-moon icon-beEvaluated" data-index="4"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[3] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[3] }}</view>待评价</view>
+                </view>
+              </view>
+              <view wx:elif="{{ myOrder.isMyorder(data) && data.customFeature.orderType == 3}}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/myOrder/myOrder" data-goods-type="{{ data.customFeature.orderType }}" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myOrder']['openVerifyPhone'] }}"
+                style="margin-top: {{ data.customFeature.appendComponentAttr['myOrder']['margin-top'] }}" class="orderTypeStyle">
+                <view class="myorderSubmenu" data-index="0">
+                  <text data-index="0">我的订单</text>
+                  <label class="ico-moon icon-rightarrow" data-index="0"></label>
+                </view>
+                <view class="orderSubmenu">
+                  <view data-index="1">
+                    <text class="ico-moon icon-pendingPayment" data-index="1"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[0] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[0] }}</view>待付款</view>
+                  <view data-index="2">
+                    <text class="ico-moon icon-beConfirmed" data-index="2"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[1] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[1] }}</view>待确认</view>
+                  <view data-index="3">
+                    <text class="ico-moon icon-tostoreBusinessSure" data-index="3"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[2] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[2] }}</view>商家确认</view>
+                  <view data-index="4">
+                    <text class="ico-moon icon-beEvaluated" data-index="4"></text>
+                    <view class="countStatusOrder" hidden="{{ data.countStatusOrder[3] == 0 || data.countStatusOrder == undefined}}">{{ data.countStatusOrder[3] }}</view>待评价</view>
+                </view>
+              </view>
+            </block>
+            <block wx:for="{{ data.customFeature.appendComponent }}" wx:key="">
+              <view wx:if="{{ item == 'myAddress' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/myAddress/myAddress" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myAddress']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myAddress']['margin-top'] }}">
+                <label class="ico-moon icon-location"></label>
+                <text>地址管理</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'shoppingCart' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/shoppingCart/shoppingCart" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['shoppingCart']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['shoppingCart']['margin-top'] }}">
+                <label class="ico-moon icon-shoppingcart"></label>
+                <text>购物车</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myMessage' }}" catchtap="userCenterTurnToPage" data-router="/userCenter/pages/myMessage/myMessage" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myMessage']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myMessage']['margin-top'] }}">
+                <label class="ico-moon icon-notify"></label>
+                <text>系统通知</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'vipCard' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/vipCard/vipCard" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['vipCard']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['vipCard']['margin-top'] }}">
+                <label class="ico-moon icon-vip-card"></label>
+                <text>会员卡</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'coupon' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/couponList/couponList" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['coupon']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['coupon']['margin-top'] }}">
+                <label class="ico-moon icon-coupon"></label>
+                <text>优惠券</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myIntegral' }}" catchtap="userCenterTurnToPage" data-router="/userCenter/pages/myIntegral/myIntegral" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myIntegral']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myIntegral']['margin-top'] }}">
+                <label class="ico-moon icon-integral"></label>
+                <text>积分</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'balance' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/balance/balance" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['balance']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['balance']['margin-top'] }}">
+                <label class="ico-moon icon-balance"></label>
+                <text>储值金</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myGroup' }}" catchtap="userCenterTurnToPage" data-router="/eCommerce/pages/myGroup/myGroup" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myGroup']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myGroup']['margin-top'] }}">
+                <label class="ico-moon icon-group-buy"></label>
+                <text>我的拼团</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'winningRecord' }}" catchtap="userCenterTurnToPage" data-router="/userCenter/pages/winningRecord/winningRecord" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['winningRecord']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['winningRecord']['margin-top'] }}">
+                <label class="ico-moon icon-winningRecord"></label>
+                <text>中奖记录</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myVideo' }}" catchtap="userCenterTurnToPage" data-router="/video/pages/videoUsercenter/videoUsercenter" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myVideo']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myVideo']['margin-top'] }}">
+                <label class="ico-moon icon-videousercenter"></label>
+                <text>我的视频</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myPromotion' }}" catchtap="userCenterTurnToPage" data-router="myPromotion" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myPromotion']['openVerifyPhone'] }}" style="margin-top: {{ data.customFeature.appendComponentAttr['myPromotion']['margin-top'] }}">
+                <label class="ico-moon icon-promotionusercenter"></label>
+                <text>代言人中心</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+              <view wx:elif="{{ item == 'myFranchiseeEnter' }}" catchtap="userCenterTurnToPage" data-router="/franchisee/pages/franchiseeList/franchiseeList" data-open-verify-phone="{{ data.customFeature.appendComponentAttr['myFranchiseeEnter']['openVerifyPhone'] }}"
+                style="margin-top: {{ data.customFeature.appendComponentAttr['myFranchiseeEnter']['margin-top'] }}">
+                <label class="ico-moon icon-franchisee-manager"></label>
+                <text>店铺管理</text>
+                <label class="ico-moon icon-rightarrow"></label>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+
+      <view class="qr-remark" wx:if="{{data.userData.qrRemarkShow}}" data-compId="{{data.compId}}" catchtap="showQRRemark" data-isShow="false">
+        <view class='paid-vip-info' catchtap="showQRRemark">
+          <view class='paid-vip-title'>
+            <text>{{data.qrData.user_info}}</text>
+          </view>
+          <view class='paid-vip-content'>
+            <image src="{{data.qrData.pic_url}}" class="paid-vip-card-qr"></image>
+            <view class="paid-vip-card-id">{{data.qrData.id}}</view>
+          </view>
+        </view>
+        <!-- <view  class="use-other-pay">——<text>使用其他支付方式</text>——</view>
+            <view class='wx-pay'>
+                <image src='http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/goods-style-wechat.png'></image>
+                <text>微信支付</text>
+            </view> -->
+      </view>
+    </view>
+
+
+  </template>
+  <view class="ele-container" wx:if="{{!user_center1.hidden}}">
+    <template is="zcUserCenter" data="{{data:user_center1, userInfo: userInfo, storeStyle: storeStyle}}"></template>
+  </view>
+
+</view>

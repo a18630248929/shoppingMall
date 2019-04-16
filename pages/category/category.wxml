@@ -1,0 +1,30 @@
+<!--pages/category/category.wxml-->
+<view>
+  <scroll-view scroll-y='true' wx:if='{{categoryflag}}' id='scroll-view' style='height:{{scroll_view}}rpx'>
+    <view class='category_top'>
+      <view wx:for='{{categoryArr.list}}' wx:key data-index='{{index}}' data-cat_id='{{item.cat_id}}' catchtap='categoryDetails' class='{{subscript == index? "category_active":"" }}'>{{item.name}}</view>
+    </view>
+  </scroll-view>
+
+  <view class='goTop' style='display:{{cangotop?"flex":"none"}}'>
+    <image class='goTop-tu' src='../image/hddb.png' bindtap="goTop"></image>
+  </view>
+
+  <!-- 商品列表 -->
+  <!-- <view class='dis_row-11'>
+    <view class='sort-line' wx:for="{{sort}}" wx:key="this">
+      <view class='{{curren==item.index?"yscolor":""}}' data-index='{{item.index}}' catchtap='sort'>{{item.sort_name}}</view>
+    </view>
+  </view> -->
+  <view class='sort-row'>
+    <view class='goods-sort' wx:for="{{categorylist}}" wx:key="this" data-id='{{item.goods_id}}' catchtap='tabDetails'>
+      <image src="{{item.default_image}}"></image>
+      <text class='sort-wb'>{{item.goods_name}}</text>
+      <view class='sort-m'>
+        <text class='new-price-red'>￥</text>
+        <text class='new-price'>{{item.Price}}</text>
+        <!-- <text class='old-price'>￥{{item.scPrice}}</text> -->
+      </view>
+    </view>
+  </view>
+</view>

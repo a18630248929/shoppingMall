@@ -1,0 +1,29 @@
+<view class="item" wx:for="{{list}}" wx:key>
+  <view class="info" bindtap='selectaddress' data-selectaddress='{{item}}'>
+    <text>{{item.name}}，{{item.tel}}</text>
+    <text style='padding:18rpx 0;'>
+      地址：{{item.province}}{{item.city}}{{item.area}}{{item.town}}{{item.address}}
+    </text>
+  </view>
+  <view class='alinea'>
+    <view class="morenbox">
+      <icon style='transform:scale(0.7);' type="circle" size="23" wx:if='{{!item.flag}}' data-index='{{index}}' data-id='{{item.id}}' bindtap='icon'></icon>
+      <icon style='transform:scale(0.7);' type="success" color="red" size="23" wx:if='{{item.flag}}' data-index='{{index}}'></icon>
+      <view class='moren'>设为默认地址</view>
+    </view>
+    <view class="modify">
+      <!-- <view class='aline' bindtap="edit">
+        <image src="/pages/image/bj.png" />
+        <view>编辑</view>
+      </view> -->
+      <view class='aline' bindtap='delete' data-id='{{item.id}}'>
+        <image src="/pages/image/sc.png" />
+        <view>删除</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:120rpx;'></view>
+<view class="add" bindtap="addAddre">
+  <view class="text">新增个人地址</view>
+</view>

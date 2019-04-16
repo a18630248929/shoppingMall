@@ -1,0 +1,9 @@
+<!--pages/shop/shop.wxml-->
+<view class='shop'>
+  <view class='shop_top'>
+    <image src='{{shop.seller.headimgurl}}'></image>
+    <view>{{shop.seller.store_name}}</view>
+  </view>
+  <import src="../first-template/first-template.wxml" />
+  <template is="list" data="{{lists:lists}}" />
+</view>

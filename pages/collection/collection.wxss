@@ -1,0 +1,50 @@
+.dis-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.dis-clu {
+  display: flex;
+  flex-direction: column;
+}
+
+.dis-row image {
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.scnr {
+  width: 500rpx;
+  justify-content: space-around;
+  padding-left: 20rpx;
+}
+
+.xhx {
+  background-color: #fff;
+  margin-top: 2rpx;
+  padding: 20rpx;
+}
+
+.sc-title {
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.old-money {
+  text-decoration: line-through;
+  color: #999;
+  padding-left: 15rpx;
+  font-size: 25rpx;
+}
+
+.cancel-sc {
+  text-align: right;
+  width: 324rpx;
+  color: #999;
+  font-size: 25rpx;
+}
+
+.nocollection {
+  text-align: center;
+  margin-top: 400rpx;
+}

@@ -1,0 +1,331 @@
+/* pages/product/list.wxss */
+@import "../../utils/common.wxss";
+
+.kanjia_header {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 90rpx;
+  background-color: white;
+  padding: 0 28rpx;
+  align-items: center;
+}
+
+.noticeicon {
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.boardcast {
+  width: 450rpx;
+  height: 80rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top-right-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  align-items: center;
+}
+
+.noticeswiper {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.noticeswiper .swiper_item {
+  width: 90%;
+  overflow-x: auto;
+}
+
+.checkorder {
+  font-size: 26rpx;
+}
+
+.checkicon {
+  width:30rpx;
+  height:30rpx;
+}
+
+.kanjia_tab {
+  margin-top: 8rpx;
+  height: 80rpx;
+  background-color: white;
+  padding-left: 58rpx;
+}
+
+.kanjia_tab .option {
+  font-size: 30rpx;
+  padding-top: 20rpx;
+  color: #333;
+}
+
+.kanjia_tab .option.active {
+  color: #c81e27;
+  border-bottom: #c81e27 4rpx solid;
+}
+
+.displayicon {
+  width: 28rpx;
+  height: 30rpx;
+  margin-top: 25rpx;
+}
+
+.norecord {
+  text-align: center;
+}
+
+.norecord image {
+  margin-top: 62rpx;
+  width: 258rpx;
+  height: 308rpx;
+}
+
+.norecordtext {
+  margin-top: 94rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+.itembody {
+  height: calc(100vh - 178rpx);
+}
+
+.itemlist .item {
+  background-color: white;
+  padding-top: 18rpx;
+  padding-bottom: 18rpx;
+  padding-left: 22rpx;
+  padding-right: 22rpx;
+  margin-bottom: 2rpx;
+  margin-top: 1rpx;
+}
+
+.itemlist .item .productcover {
+  width: 214rpx;
+  height: 214rpx;
+}
+
+.itemlist .item .productdetail {
+  margin-left: 18rpx;
+  width: 450rpx;
+}
+
+.itemlist .item .productdetail .producttitle {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.itemlist .item .productdetail .firstset {
+  width: 155rpx;
+}
+
+.itemlist .item .productdetail .reminder {
+  width: 145rpx;
+  color: #999;
+}
+
+.tm {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 41rpx;
+  line-height: 41rpx;
+  width: 304rpx;
+  background:  #c81e27;
+
+  border-radius: 6rpx;
+  color: white;
+  padding: 0 17rpx;
+  align-items: center;
+}
+
+.tcm {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 41rpx;
+  width: 304rpx;
+  background: #999;
+  border-radius: 6rpx;
+  color: white;
+  padding: 6rpx 10rpx 0;
+}
+
+.oldprice {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.progress {
+  width: 150rpx;
+  height: 10rpx;
+  margin-top: 19rpx;
+}
+
+.progress .progress-go {
+  height: 10rpx;
+}
+
+.progress.going {
+  border:  #c81e27 0.5rpx solid;
+  border-radius: 6rpx;
+}
+
+.progress.going  .progress-go {
+  background:  #c81e27;
+}
+
+.progress.coming {
+  border: #999 1rpx solid;
+  border-radius: 6rpx;
+}
+
+.progress.coming  .progress-go {
+  background: #999;
+}
+
+.v14 {
+  height: 28rpx;
+  width: 20rpx;
+  text-align: center;
+  margin-left: 4rpx;
+  border-radius: 4rpx;
+}
+
+.v14 .iv14 {
+  line-height: 28rpx;
+}
+
+.tcm .v14 {
+  background-color: #909090;
+}
+
+.itemdetail .item {
+  background-color: white;
+  width: 374rpx;
+  display: inline-flex;
+  margin-bottom: 2rpx;
+  margin-top: 1rpx;
+}
+
+.itemdetail .item:nth-child(even) {
+  margin-left: 2rpx;
+}
+
+.itemdetail .item .productcover {
+  width: 374rpx;
+  height: 370rpx;
+}
+
+.itemdetail .item .producttitle {
+  margin-left: 20rpx;
+  margin-right: 22rpx;
+  width: 336rpx;
+  height: 75rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.itemdetail .item .productprice {
+  margin-left: 20rpx;
+}
+
+.itemdetail .item .productprice .firstset {
+  width: 172rpx;
+}
+
+.itemdetail .item .producttimer {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.itemdetail .item .productreminder {
+  margin-left: 20rpx;
+  margin-top: 18rpx;
+  margin-bottom: 14rpx;
+}
+
+.itemdetail .item .reminder {
+  width: 170rpx;
+  color: #999;
+}
+
+.itemdetail .progress {
+  width: 150rpx;
+  height: 10rpx;
+  margin-top: 8rpx;
+  margin-right: 52rpx;
+}
+
+.itemdetail .progress .progress-go {
+  height: 10rpx;
+}
+
+.btn {
+  width: 1rpx;
+  height: 1rpx;
+  margin: 0;
+  padding: 0;
+  /* position: fixed; *//* top: 150rpx; */
+  border-color: transparent;
+  border: none;
+  background-color: transparent;
+}
+
+.aa {
+  height: 68rpx;
+  width: 156rpx;
+  position: fixed;
+  top: 150rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.getFormId {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.getFormId>button {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.getFormId {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.getFormId button {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.isRelative{
+  position: relative;
+}

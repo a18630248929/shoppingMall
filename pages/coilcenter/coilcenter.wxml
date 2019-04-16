@@ -1,0 +1,39 @@
+<!--pages/coilcenter/coilcenter.wxml-->
+<view class='coilcenter'>
+  <view wx:for='{{coilcenter}}' wx:key class='coilcenter_coupon {{item.type == 2? "xian":""}}' wx:if='{{item.type == 2}}' data-data='{{item}}' catchtap='useSecurities'>
+    <view class='coilcenter_coupon_a'>
+      <view>￥
+        <text>{{item.cash}}</text>
+      </view>
+      <view>现金券</view>
+    </view>
+    <view class='coilcenter_coupon_b'>
+      <view><text class='pt'>{{item.pt == 1?'平台':'店铺'}}</text><text>{{item.desc}}</text></view>
+      <view>{{item.title}}</view>
+      <view>{{item.start_time}} - {{item.end_time}}</view>
+    </view>
+    <view>
+      <view class='coilcenter_lq' catchtap='useSecurities' data-data='{{item}}' wx:if='{{item.is_receive}}'>立即使用</view>
+      <view class='coilcenter_lq' catchtap='receiveSecurities' data-id='{{item.id}}' wx:else>立即领取</view>
+    </view>
+    <view class='lingqu' wx:if='{{item.is_receive}}'>已领取</view>
+  </view>
+  <view wx:for='{{coilcenter}}' wx:key class='coilcenter_coupon' wx:if='{{item.type == 1}}' data-data='{{item}}' bindtap='useSecurities'>
+    <view class='coilcenter_coupon_a'>
+      <view>￥
+        <text>{{item.jian}}</text>
+      </view>
+      <view>满减券</view>
+    </view>
+    <view class='coilcenter_coupon_b'>
+      <view><text class='pt'>{{item.pt == 1?'平台':'店铺'}}</text><text>{{item.desc}}</text></view>
+      <view>满{{item.man}}使用</view>
+      <view>{{item.start_time}} - {{item.end_time}}</view>
+    </view>
+    <view>
+      <view class='coilcenter_lq' wx:if='{{item.is_receive}}' catchtap='useSecurities' data-data='{{item}}'>立即使用</view>
+      <view class='coilcenter_lq' catchtap='receiveSecurities' data-id='{{item.id}}' wx:else>立即领取</view>
+    </view>
+    <view class='lingqu' wx:if='{{item.is_receive}}'>已领取</view>
+  </view>
+</view>

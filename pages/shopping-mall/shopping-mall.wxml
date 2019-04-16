@@ -1,0 +1,147 @@
+<import src="../first-template/first-template.wxml" />
+<view class='signIn' wx:if='{{kai}}'>
+  <image src='http://p3.baiwangkeji.com/content0gow_5c9deb71d8da4?imageMogr2/thumbnail/200x/strip/quality/80/format/png' class='image'></image>
+  <button open-type='share'>确定转发</button>
+</view>
+<view class="kjdhzz" wx:if="{{isnavigation}}" bindtap='isnavigationyc'></view>
+<view class='ksdh_1 "{{isnavigation?"fast":returnss}}"' style='right:{{isnavigation?"0":"-284rpx"}};'>
+  <view class='navigation' bindtap='ksnavigation' wx:if="{{isnavigation}}">
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+    <view class='dis-clu'>
+      <view>收起</view>
+    </view>
+  </view>
+  <view class='navigation' bindtap='ksnavigation' wx:else>
+    <image class='fxzx' src='/pages/image/fxy.png'></image>
+    <view class='dis-clu'>
+      <view>快速</view>
+      <view>导航</view>
+    </view>
+  </view>
+  <view class='navigationstyle'>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/shoppingcart/shoppingcart">
+        <image src="/pages/image/homegwc.png"></image>
+        <view>购物车</view>
+      </navigator>
+      <navigator class="kjlbv" url="/pages/search/search">
+        <image src="/pages/image/dhsearch.png"></image>
+        <view>搜索</view>
+      </navigator>
+    </view>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/personal/personal">
+        <image src="/pages/image/dhmy.png"></image>
+        <view>个人中心</view>
+      </navigator>
+      <button catchtap='click' class='anniu'>
+        <view class="kjlbv">
+          <image src="/pages/image/dhfx.png"></image>
+          <view class='share_dh'>分享赚积分</view>
+        </view>
+      </button>
+    </view>
+  </view>
+</view>
+<!-- 回到顶部 -->
+<view class='goTop' style='display:{{yin?"flex":"none"}}'>
+  <image class='goTop-tu' src='../image/hddb.png' bindtap="goTop"></image>
+</view>
+<!-- 搜索框 -->
+<view class='search' bindtap='search'>
+  <icon type="search" size="15"></icon>
+  请输入商品名称
+</view>
+<scroll-view class='scrolls' style="height:{{deviceH}}px" scroll-y='true' bindscroll="scrollTopy" bindscrolltolower="scroll" scroll-top="{{scrollTop}}">
+  <view class='dis_cen' id='mjltest'>
+    <!-- 轮播图 -->
+    <swiper class='swiper-1' autoplay="auto" circular="true" duration="1000" indicatorColor="white" indicator-active-color="red" indicatorDots="true" interval="5000">
+      <swiper-item wx:for="{{home.banner.items}}" wx:key bindtap="banner" data-sid="{{item.data}}" data-index="{{index}}" data-image="{{item.image}}" data-descs="{{item.title}}">
+        <image class='horn' mode='widthFix' src='{{item.image}}'></image>
+      </swiper-item>
+    </swiper>
+    <!-- 中部导航 -->
+    <view class='Navigation-1' style='margin-left:0;'>
+      <view hover-class='none' class='Navigation_couter-1' data-descs='{{item.descs}}' data-banner='{{item.bannerimage}}' data-sid='{{item.sid}}' wx:for="{{Navigation}}" data-index='{{index}}' wx:key="this" catchtap='changegoodsname'>
+        <image mode='aspectFill' src='{{item.imgUrls}}'></image>
+        <view>{{item.descs}}</view>
+      </view>
+    </view>
+    <!-- 百望快報轮播 -->
+    <!-- <view class='news'>
+      <image class='bwkb' src='http://wap.baiwangkeji.com/static/themes/taozhenpin/img/notice-hot2.png'></image>
+      <swiper class="newsnr" vertical="true" autoplay="true" circular="true" interval="2000">
+        <swiper-item wx:for='{{home.notice}}' wx:key="this">
+          {{item.title}}
+        </swiper-item>
+      </swiper>
+      <text>更多</text>
+    </view> -->
+    <!-- 优惠券 -->
+    <view class='yhq'>
+      <image bindtap='coilcenter' class='banner-t-1' src='/pages/image/coilcenter.gif '></image>
+    </view>
+    <!-- 秒杀活动 -->
+    <view class='brand'>
+      <view class='dis-row hd' bindtap='robbuy' style='padding:15rpx 0 20rpx 15rpx;'>
+        <text class='pphd'>今日秒杀</text>
+        <view style='margin-left:120rpx;width:30%;'>
+          <text class='More'>{{hour}}</text>
+          :
+          <text class='More'>{{minute}}</text>
+          :
+          <text class='More'>{{second}}</text>
+        </view>
+        <text class='gd-1'>更多</text>
+      </view>
+      <scroll-view scroll-x="true" class='gd_head'>
+        <view wx:for="{{robbuy}}" class="dis" wx:key="this" bindtap='msdetails' data-id='{{item.goods_id}}'>
+          <image class='gd' src='{{item.default_image}}'></image>
+          <view class='juz'>
+            <view class='jianj'>{{item.goods_title}}</view>
+          </view>
+          <view class='money'>
+            <view class='msj'>￥{{item.Price}}</view>
+            <view class='myj'>￥{{item.scPrice}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='dis-row hd'>
+      <text class='pphd'>春季购物节</text>
+    </view>
+    <view class='cjgwj'>
+      <view class='dis-row-1'>
+        <image bindtap='special' style='border-radius:16rpx 0 0 0;' data-idx='{{3}}' src='http://p4.baiwangkeji.com/comment0gow_5c89a8b498f56?imageMogr2/quality/80/format/jpg'></image>
+        <image style='border-radius:0 16rpx 0 0;' bindtap='special' data-idx='{{2}}' class='cjgwj-t' src='http://p4.baiwangkeji.com/comment0gow_5c89a8b44fd65?imageMogr2/thumbnail/240x/strip/quality/80/format/jpg'></image>
+      </view>
+      <view class='dis-row-1'>
+        <image style='border-radius:0 0 0 16rpx;' bindtap='special' data-idx='{{1}}' src='http://p3.baiwangkeji.com/content0gow_5c9af1016a3a9?imageMogr2/thumbnail/586x/strip/quality/80/format/png'></image>
+        <image style='border-radius:0 0 16rpx 0;' bindtap='jqqd' class='cjgwj-t' src='http://p4.baiwangkeji.com/comment0gow_5c89a8b4d8a8a?imageMogr2/quality/80/format/jpg'></image>
+      </view>
+    </view>
+    <!-- 百望汽车 -->
+    <view class='bwqc' bindtap='bwqc'>
+      <image mode='widthFix' src='http://p4.baiwangkeji.com/comment0gow_5c9430db0b881?imageMogr2/quality/80/format/jpg'></image>
+    </view>
+    <view class='dis-row hd'>
+      <text class='pphd'>店铺推荐</text>
+    </view>
+    <image class='zt' bindtap='jqqd' src='http://p1.baiwangkeji.com/pic0gow_5c84e1fd8e262'></image>
+    <!-- 爆款推荐 -->
+    <view class='dis-row hd'>
+      <text class='pphd'>爆款推荐</text>
+    </view>
+    <view class='sort-row-1'>
+      <view class='goods-sort-1' wx:for="{{list}}" wx:key="this" bindtap='details' data-id='{{item.goods_id}}'>
+        <image src="{{item.thumbnail}}"></image>
+        <text class='sort-wb'>{{item.goods_name}}</text>
+        <view class='sort-m'>
+          <text class='new-price-red'>￥</text>
+          <text class='new-price'>{{item.Price}}</text>
+          <text class='old-price'>￥{{item.scPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

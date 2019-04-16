@@ -1,0 +1,30 @@
+<!--pages/payment/payment.wxml-->
+<view class='paymentbox'>
+  <view>
+    <text>总金额</text>
+    <text>￥{{money}}</text>
+  </view>
+  <view>
+    <text>订单编号</text>
+    <text>{{order_sn}}</text>
+  </view>
+  <!-- 支付 -->
+  <radio-group class="radio-group" bindchange="balanceChange">
+    <view>
+      <view>微信支付</view>
+      <radio value="1" color='#c81e27' checked/>
+    </view>
+    <!-- disabled='{{methodPayment.totalMoney<=methodPayment.lurpak%100?"true":"false"}}'-->
+    <view>
+      <view>金积分支付(剩余{{paymentDetails.lurpak}}金积分)</view>
+      <radio value="2" color='#c81e27' disabled='{{money <= paymentDetails.lurpak / 100? false:true}}' />
+    </view>
+    <view>
+      <view>积分赠送</view>
+      <view>{{paymentDetails.backmoney}}银积分</view>
+    </view>
+  </radio-group>
+  <view class='confirmPayment' bindtap='confirmPayment'>
+    <view>确定支付</view>
+  </view>
+</view>

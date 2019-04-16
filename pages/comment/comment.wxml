@@ -1,0 +1,21 @@
+<view class='dis-wrap'>
+  <view wx:for="{{comment}}" wx:key="this" class='comment-bq'>
+    <view>{{item.tags}}</view>
+  </view>
+</view>
+
+<view class='comment'>
+  <view class='comment-1' wx:for='{{commentLists}}' wx:key="this">
+    <view class='dis-row'>
+      <image class='pltp' src="{{item.headimgurl}}"></image>
+      <view style='width:440rpx;'>{{item.nickname}}</view>
+      <view class='flo'>
+        <view wx:for="{{item.star}}" wx:key="this" wx:key="this">
+          <image class='comment-xx' src='/pages/image/xx.png'></image>
+        </view>
+      </view>
+    </view>
+    <view>{{item.body}}</view>
+    <view class='comment-time'>购买时间： {{item.addtime}}</view>
+  </view>
+</view>

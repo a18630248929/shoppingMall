@@ -1,0 +1,90 @@
+<!--pages/orderdetails/orderdetails.wxml-->
+<view class='orderDetailsPage'>
+  <!-- 进度条 -->
+  <view class='detailsProgress' hidden='{{orderdetails.pay_status==4}}'>
+    <view class='detailsProgress_top' wx:for='{{detailsProgress}}' wx:key>
+      <view class='true'>
+        <radio checked='true' color='{{orderdetails.goods_status == item.index?"#c81e27":"#ccc"}}' wx:if='{{orderdetails.goods_status >= item.index}}'></radio>
+        <view class='dianBox' wx:else>
+          <view class='dian'></view>
+        </view>
+        <view class='xian'></view>
+      </view>
+      <view>{{item.text}}</view>
+    </view>
+  </view>
+  <!-- 收货信息 -->
+  <view class='receiving-information'>
+    <view>收货信息</view>
+    <view>
+      <view>
+        <text>收货人：{{orderdetails.shipname}} </text>
+      </view>
+      <view>
+        <text>联系电话：{{orderdetails.tel}}</text>
+      </view>
+      <view>
+        <text>收货地址：{{orderdetails.province}} {{orderdetails.city}} {{orderdetails.area}} {{orderdetails.address}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 商品信息 -->
+  <view class='commodity-information'>
+    <view>商品信息</view>
+    <view>
+      <image src='{{orderdetails.shop_logo}}' />{{orderdetails.store_name}}</view>
+    <view class='commodity-information-goods'>
+      <view>
+        <image src='{{orderdetails.img}}' class='img'></image>
+      </view>
+      <view class='text'>{{orderdetails.goods_name}}</view>
+      <view class='price'>
+        <view>X{{orderdetails.quantity}}</view>
+        <view>￥{{orderdetails.price}}</view>
+      </view>
+    </view>
+    <view>
+      <view  hidden='{{orderdetails.pay_status == 4}}'data-order_sn='{{orderdetails.order_sn}}' catchtap='refund'>申请售后</view>
+    </view>
+  </view>
+  <view class='commodity-information-money'>
+    <view>
+      <text>商品总价：</text>
+      <text>￥{{orderdetails.price}}</text>
+    </view>
+    <view>
+      <text>运费/快递费：</text>
+      <text>￥{{orderdetails.freight}}</text>
+    </view>
+    <view>
+      <text>购物积分抵扣：</text>
+      <text>￥{{orderdetails.integral_cost}}</text>
+    </view>
+    <view>
+      <text>商品优惠：</text>
+      <text>￥{{orderdetails.coupon_money}}</text>
+    </view>
+    <view>
+      <text>实付款：</text>
+      <text style="color:#c81e27;">￥{{orderdetails.money}}</text>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class='order-information'>
+    <view>订单信息</view>
+    <view>
+      <view><text>订单编号：</text>{{orderdetails.order_sn}}</view>
+      <view><text>提交时间：</text>{{orderdetails.addtime}}</view>
+      <view><text>付款时间：</text>{{orderdetails.paytime}}</view>
+      <view><text>支付方式：</text>{{orderdetails.from}}</view>
+      <view><text>收货时间：</text>{{orderdetails.confirm_time}}</view>
+      <view class='copy' catchtap='copyNumbers' data-order_sn='{{orderdetails.order_sn}}'>复制单号</view>
+    </view>
+  </view>
+</view>
+<view class='orderDetailsPage-bottom' hidden='{{orderdetails.pay_status==4}}'>
+  <view>本次消费赠送 {{orderdetails.score_multi_back}} 积分</view>
+  <view class='orderDetailsPage-bottom-view' wx:if='{{orderdetails.goods_status==0}}' data-order_sn='{{orderdetails.order_sn}}' catchtap='remindershipment'>提醒发货</view>
+  <view class='orderDetailsPage-bottom-view' wx:if='{{orderdetails.goods_status==1}}' data-order_sn='{{orderdetails.order_sn}}' catchtap='confirmreceipt'>确认收货</view>
+  <view class='orderDetailsPage-bottom-view' wx:if='{{orderdetails.goods_status==2}}'>追评</view>
+</view>

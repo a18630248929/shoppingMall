@@ -1,0 +1,5 @@
+<view class='dis-row'>
+  <view wx:for="{{consultation}}" wx:key='this'>
+    <text class='ztys'>{{item}}</text>
+  </view>
+</view>

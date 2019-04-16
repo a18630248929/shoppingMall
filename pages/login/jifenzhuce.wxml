@@ -1,0 +1,16 @@
+<view class='sign_in'>
+  <image src="http://p4.baiwangkeji.com/comment0gow_5c943a2bc63d2?imageMogr2/quality/80/format/png" mode="widthFix"></image>
+  <view class='a1'>
+    <image src='/pages/image/shou.png' mode="widthFix" class='a2'></image>
+    <input type="text" bindinput='useName' type="number" maxlength="11" placeholder='请输入手机号码' placeholder-style='color:gainsboro;' class='a3'></input>
+  </view>
+  <view class='a4'>
+    <image src='/pages/image/mm.png' mode="widthFix" class='a5'></image>
+    <input type="text" bindinput='passWord' maxlength="4" placeholder='请输入验证码' focus="{{focus}}" placeholder-style='color:gainsboro;' type="number" class='a6'></input>
+    <view style="color:{{ys1}};background-color:{{backgroundcolor}};" bindtap='yzmdjs' class='a7'>
+      {{djs}}
+    </view>
+  </view>
+  <button bindtap='binDing'>登录</button>
+  <view class='noLogin' catchtap='home'>暂不登录</view>
+</view>

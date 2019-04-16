@@ -1,0 +1,25 @@
+/* pages/shop/shop.wxss */
+@import '../shopping-mall/shopping-mall.wxss';
+.shop{
+  width: 100%;
+}
+.shop_top{
+  display: flex;
+  background: #c81e27;
+  font-size: 30rpx;
+  color: #fff;
+  padding: 50rpx  30rpx;
+  box-sizing: border-box;
+}
+.shop_top image{
+  width:100rpx;
+  height: 100rpx;
+  border-radius:100rpx; 
+  border: 2px solid #fff;
+}
+.shop_top view{
+  margin-left: 50rpx;
+}
+.sort-row{
+  padding-top: 20rpx;
+}

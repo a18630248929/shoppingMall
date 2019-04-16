@@ -1,0 +1,12 @@
+.dis-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+}
+
+.ztys {
+  border-bottom: 2rpx solid red;
+  border-right: 1rpx solid #ccc;
+}

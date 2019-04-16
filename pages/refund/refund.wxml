@@ -1,0 +1,14 @@
+<!--pages/refund/refund.wxml-->
+<view class='refund'>
+  <view>退款原因</view>
+  <picker bindchange="bindPickerChange" value="{{refundIndex}}" range="{{array}}">
+    <view class="picker">
+      {{array[refundIndex]}}
+    </view>
+  </picker>
+  <view>其他原因</view>
+  <view class="section">
+    <textarea bindblur="bindTextAreaBlur" auto-height/>
+  </view>
+  <button class='submission' catchtap='submitRefund' disabled='{{refundIndex==0}}'>提交</button>
+</view>

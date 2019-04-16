@@ -1,0 +1,18 @@
+/* pages/special/special.wxss */
+@import '../shopping-mall/shopping-mall.wxss';
+
+.bannertu {
+  width: 750rpx;
+  height: 287rpx;
+}
+
+.Navigation-1 {
+  margin-bottom:10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  width: 730rpx;
+  margin-left: 10rpx;
+  border-radius: 16rpx;
+  /* margin-bottom:10rpx; */
+}

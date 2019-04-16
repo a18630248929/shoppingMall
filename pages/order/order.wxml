@@ -1,0 +1,150 @@
+<!-- 切换栏 -->
+<view class="swiper-tab">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
+</view>
+<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH}}px" bindchange="tabChange">
+  <!-- 全部 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetails.noPayResult}}' wx:key class='hot-box_box'>
+        <view  wx:for='{{item.sub_orders}}' wx:for-item='itemFor' wx:key>
+          <view class='hot_box_view_a' wx:for='{{itemFor.sub_order_item}}' wx:for-item='itemA' wx:key data-id='{{itemA.good_id}}' catchtap='commoditydetailsPage'>
+            <view>
+              <image src='{{itemA.good_img}}' mode='widthFix'></image>
+            </view>
+            <view>{{itemA.good_name}}</view>
+            <view>
+              <text>X {{itemA.good_quantity}}</text>
+              <text>￥{{itemA.good_total_money}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.parent_total_count}}件商品   合计：<text style='color:red;'>￥{{item.parent_total_money}}</text></text>
+          <view>
+            <text bindtap='cancelOrder' data-order_sn="{{item.parent_order_sn}}">取消订单</text>
+            <text class='payment' bindtap='paymentAmount' data-order_sn="{{item.parent_order_sn}}" data-money="{{item.parent_total_money}}">付款</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 待付款 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetailss}}' wx:key class='hot-box_box'>
+        <view  wx:for='{{item.sub_orders}}' wx:for-item='itemFor' wx:key>
+          <view class='hot_box_view_a' wx:for='{{itemFor.sub_order_item}}' wx:for-item='itemA' wx:key data-id='{{itemA.good_id}}' catchtap='commoditydetailsPage'>
+            <view>
+              <image src='{{itemA.good_img}}' mode='widthFix'></image>
+            </view>
+            <view>{{itemA.good_name}}</view>
+            <view>
+              <text>X {{itemA.good_quantity}}</text>
+              <text>￥{{itemA.good_total_money}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.parent_total_count}}件商品   合计：<text style='color:red;'>￥{{item.parent_total_money}}</text></text>
+          <view>
+            <text bindtap='cancelOrder' data-order_sn="{{item.parent_order_sn}}">取消订单</text>
+            <text class='payment' bindtap='paymentAmount' data-order_sn="{{item.parent_order_sn}}" data-money="{{item.parent_total_money}}">付款</text>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </swiper-item>
+  <!-- 待发货 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetails.result}}' wx:key class='hot-box_box'>
+        <view class='hot_box_view_a' catchtap='orderdetailsPage' data-order_sn='{{item.order_sn}}'>
+          <view>
+            <image src='{{item.img}}' mode='widthFix'></image>
+          </view>
+          <view>{{item.goods_name}}</view>
+          <view>
+            <text>X {{item.quantity}}</text>
+            <text>￥{{item.money}}</text>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.quantity}}件商品   合计：<text style='color:red;'>￥{{item.quantity*item.money}}</text></text>
+          <view>
+            <text class='payment' data-order_sn="{{item.order_sn}}" catchtap='remindershipment'>提醒发货</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 待收货 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetails.result}}' wx:key class='hot-box_box'>
+        <view class='hot_box_view_a' catchtap='orderdetailsPage' data-order_sn='{{item.order_sn}}'>
+          <view>
+            <image src='{{item.img}}' mode='widthFix'></image>
+          </view>
+          <view>{{item.goods_name}}</view>
+          <view>
+            <text>X {{item.quantity}}</text>
+            <text>￥{{item.money}}</text>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.quantity}}件商品   合计：<text style='color:red;'>￥{{item.quantity*item.money}}</text></text>
+          <view>
+            <text class='payment' catchtap='confirmreceipt' data-order_sn='{{item.order_sn}}'>确认收货</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+   <!-- 评价 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetails.result}}' wx:key class='hot-box_box'>
+        <view class='hot_box_view_a' catchtap='orderdetailsPage' data-order_sn='{{item.order_sn}}'>
+          <view>
+            <image src='{{item.img}}' mode='widthFix'></image>
+          </view>
+          <view>{{item.goods_name}}</view>
+          <view>
+            <text>X {{item.quantity}}</text>
+            <text>￥{{item.money}}</text>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.quantity}}件商品   合计：<text style='color:red;'>￥{{item.quantity*item.money}}</text></text>
+          <!-- <view>
+            <text class='payment' catchtap='confirmreceipt' data-order_sn='{{item.order_sn}}'>确认收货</text>
+          </view> -->
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 退款 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" bindscrolltolower="lower">
+      <view wx:for='{{orderDetails.result}}' wx:key class='hot-box_box'>
+        <view class='hot_box_view_a' catchtap='orderdetailsPage' data-order_sn='{{item.order_sn}}'>
+          <view>
+            <image src='{{item.img}}' mode='widthFix'></image>
+          </view>
+          <view>{{item.goods_name}}</view>
+          <view>
+            <text>X {{item.quantity}}</text>
+            <text>￥{{item.money}}</text>
+          </view>
+        </view>
+        <view class='hot_box_view_b'>
+          <text>共{{item.quantity}}件商品   合计：<text style='color:red;'>￥{{item.quantity*item.money}}</text></text>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

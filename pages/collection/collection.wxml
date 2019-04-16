@@ -1,0 +1,14 @@
+<view>
+  <view class='dis-row xhx' wx:for="{{list}}" wx:key="this" catchtap='detailsgoods' data-goods_id='{{item.goods_id}}'>
+    <image src='{{item.goods.default_image}}'></image>
+    <view class='dis-clu scnr'>
+      <view class='sc-title'>{{item.goods.goods_name}}</view>
+      <view class='dis-row sc-title'>
+        <view>￥{{item.goods.Price}}</view>
+        <view class='old-money'>￥{{item.goods.scPrice}}</view>
+        <view class='cancel-sc' data-goods_id='{{item.goods_id}}' data-id='{{item.id}}' catchtap='collection'>取消收藏</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='nocollection' wx:if='{{list.length==0}}'>你这里空荡荡的，赶快去收藏吧！</view>

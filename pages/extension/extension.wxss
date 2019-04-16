@@ -1,0 +1,50 @@
+/* pages/extension/extension.wxss */
+
+.tgzx {
+  width: 750rpx;
+  margin-top: -11rpx;
+}
+
+.starttg {
+  height: 90rpx;
+  width: 90%;
+  background-color: #e50d2c;
+  color: #fff;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+}
+
+.text-cen {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  height: 110rpx;
+  width: 100%;
+  align-items: center;
+  border-top: 1rpx solid #f7f7f7;
+}
+
+.phone {
+  background-color: #333;
+  width: 80rpx;
+  font-size: 22rpx;
+  color: #fff;
+  height: 80rpx;
+  opacity: 0.7;
+  border-radius: 10rpx 0 0 10rpx;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  position: fixed;
+  top: 800rpx;
+  right: 0;
+}
+
+.fxzx {
+  height: 30rpx;
+  width: 30rpx;
+}

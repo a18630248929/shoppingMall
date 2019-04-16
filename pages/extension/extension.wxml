@@ -1,0 +1,18 @@
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9dca55ae1e1?imageMogr2/thumbnail/640x/strip/quality/80/format/octet-stream'></image>
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9e3a1e559b5?imageMogr2/thumbnail/640x/strip/quality/80/format/png'></image>
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9dca5655468?imageMogr2/thumbnail/640x/strip/quality/80/format/octet-stream'></image>
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9dca569be93?imageMogr2/thumbnail/640x/strip/quality/80/format/octet-stream'></image>
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9dca56e9ddf?imageMogr2/thumbnail/640x/strip/quality/80/format/octet-stream'></image>
+<image class='tgzx' mode='widthFix' src='http://p3.baiwangkeji.com/content0gow_5c9dca5747860?imageMogr2/thumbnail/640x/strip/quality/80/format/octet-stream'></image>
+<view class='text-cen'>
+  <button open-type='share' class='starttg' catchtap='starttg'>开始推广</button>
+</view>
+
+
+<view class='phone' catchtap='phone'>
+    <image class='fxzx' src='/pages/image/fxy.png'></image>
+    <view class='dis-clu'>
+      <view>客服</view>
+      <view>电话</view>
+    </view>
+  </view>

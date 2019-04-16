@@ -1,0 +1,12 @@
+page {
+  background-size: 100%;
+  margin-left: auto;
+}
+
+.swiper_image {
+  width: 100%;
+  height: 320rpx;
+}
+@import '/segments/group-buy-list/group-buy-list.wxss';
+@import '/pages/details/details.wxss'
+ 

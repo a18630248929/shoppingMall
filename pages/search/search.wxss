@@ -1,0 +1,83 @@
+@import '../shopping-mall/shopping-mall.wxss';
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  height: 68rpx;
+  width: 90%;
+  border-radius: 50rpx;
+  margin-left: 5%;
+  font-size: 27rpx;
+  position: fixed;
+}
+
+.ssys {
+  margin-left: 16rpx;
+}
+
+.search_tu {
+  margin: 0 10rpx 0 30rpx;
+}
+
+.search_nr {
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  border: 2rpx solid #000;
+  margin: 20rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+
+.kong1 {
+  text-align: center;
+  margin-top: 250rpx;
+  color: #999;
+  font-size: 30rpx;
+}
+
+.kt {
+  height: 100rpx;
+  width: 100rpx;
+  margin-bottom: 20rpx;
+}
+
+.bgc {
+  background-color: #000;
+  height: 100rpx;
+  padding-top: 20rpx;
+}
+
+.rmss {
+  width: 710rpx;
+  margin-left: 20rpx;
+  padding-top: 100rpx;
+}
+
+.rmss-1 {
+  font-size: 30rpx;
+  padding-left: 20rpx;
+}
+
+.search_ys {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 27rpx;
+}
+
+.sswz {
+  background-color: #ccc;
+  margin: 20rpx;
+  height: 50rpx;
+  padding: 0 15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:10rpx;
+}
+.active{ 
+ background-color: #c81e27;
+ color: #fff;
+} 

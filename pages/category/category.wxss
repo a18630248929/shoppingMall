@@ -1,0 +1,48 @@
+/* pages/category/category.wxss */
+@import '../shopping-mall/shopping-mall';
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+scroll-view {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  vertical-align: middle;
+  background: #fff;
+  padding: 20rpx 0;
+  margin-bottom:7rpx;
+}
+
+.category_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.category_top .category_active {
+  background: #c81e27;
+  color: #fff;
+  border: none;
+}
+
+.category_top view {
+  width: 23%;
+  height: 75rpx;
+  border: 1px solid #f6f6f6;
+  text-align: center;
+  line-height: 75rpx;
+  margin-top: 10rpx;
+  border-radius: 75rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+

@@ -1,0 +1,100 @@
+.group-status-list .tabbar-list {
+  text-align: center;
+  height: 102rpx;
+  font-size: 28rpx;
+  color: #333;
+  background: #fff;
+}
+
+.group-status-list .tabbar-list1 {
+  height: 90rpx;
+}
+
+.group-status-list .tabbar-list .s-view {
+  height:100%;
+  width: 100%;
+  white-space: nowrap;
+  text-decoration: inherit;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.group-status-list .s-view .item {
+  box-sizing: border-box;
+  position: relative;
+  height: 102rpx;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 24rpx;
+}
+.group-status-list .tabbar-list1 .s-view .item{
+  display: inline-block;
+  vertical-align: top;
+}
+.group-status-list .item>view {
+  padding: 0 20rpx;
+}
+
+.group-status-list .item>view {
+  display: inline-block;
+}
+
+.group-status-list .tabbar-list2 .item>view {
+  border-radius: 30rpx;
+}
+
+.group-status-list .tabbar-list2 .item>view {
+  display: inline-block;
+  padding: 14rpx 30rpx;
+  line-height:1;
+}
+.group-status-list .tabbar-list1 .item>view{
+  vertical-align: top;
+  height:98rpx;
+  line-height: 98rpx;
+  padding: 0;
+}
+.group-status-list .s-view .active {
+  border-bottom: 4rpx solid #f23031;
+  color: #f23031;
+}
+
+.group-status-list .item {
+  min-width: 140rpx;
+}
+
+.group-status-list .item .active {
+  height: 54rpx;
+  line-height: 54rpx;
+  border-radius: 30rpx;
+  background: #ff3600;
+  color: #fff;
+}
+
+.group-status-list .list-time .item {
+  box-sizing: border-box;
+  width: 150rpx;
+  font-weight: 400;
+  padding-top: 15rpx;
+}
+
+.group-status-list .list-time .s-view>.active {
+  border-bottom: 4rpx solid #ff3600;
+}
+
+.group-status-list .list-time .item>view {
+  margin: 0 auto;
+}
+
+.group-status-list .list-time .item>view:nth-child(1) {
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #333;
+}
+
+.group-status-list .list-time .item>view:nth-child(2) {
+  line-height: 22px;
+  font-size: 24rpx;
+  font-weight: 400;
+}

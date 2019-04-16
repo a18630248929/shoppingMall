@@ -1,0 +1,753 @@
+/* pages/product/detail.wxss */
+@import "../../utils/common.wxss";
+
+page {
+  height: 100vh;
+}
+
+.cover {
+  width: 750rpx;
+  height: 648rpx;
+}
+
+.pricebanner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 106rpx;
+  background-color: #c81e27;
+  color: white;
+  overflow-y: unset;
+  justify-content: space-between;
+}
+
+.pricebanner .price {
+  margin-left: 20rpx;
+  margin-top: 9rpx;
+}
+
+.pricebanner .info {
+  margin-top: 15rpx;
+  padding-left: 30rpx;
+}
+
+.pricebanner .info .reminder {
+  padding: 5rpx 8rpx;
+}
+
+.pricebanner .timer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 300rpx;
+  height: 125rpx;
+}
+
+.pricebanner .timer image {
+  width: 342rpx;
+  height: 115rpx;
+}
+
+.pricebanner .timer>view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.oldprice {
+  text-decoration: line-through;
+  color: #fff;
+}
+
+.timerheader {
+  color: #ffeb5f;
+  margin-top: 20rpx;
+  margin-left: 50rpx;
+  text-align: center;
+}
+
+.tm {
+  display: flex;
+  justify-content: center;
+  margin-top: 14rpx;
+  margin-left: 40rpx;
+}
+
+.v14 {
+  display: inline-block;
+  height: 33rpx;
+  line-height: 33rpx;
+  width: 22rpx;
+  text-align: center;
+  border-radius: 7rpx;
+  margin-right: 4rpx;
+}
+
+.iv14 {
+  margin-top: 1.4rpx;
+  margin-bottom: 4rpx;
+  text-align: center;
+}
+
+.marker {
+  margin-right: 4rpx;
+  font-size: 24rpx;
+  width: 24rpx;
+}
+
+.detail {
+  padding-top: 30rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  padding-bottom: 30rpx;
+  background: white;
+  color: #333;
+}
+
+.detail .title {
+  width: 560rpx;
+}
+
+.detail .share {
+  position: relative;
+  text-align: right;
+  flex: 1;
+}
+
+.detail .share .font-11 {
+  color: #999;
+  overflow-y: unset;
+  font-size: 22rpx;
+}
+
+.detail .share .share-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.shareimg {
+  margin-right: 14rpx;
+  margin-bottom: 14rpx;
+}
+
+.express {
+  margin-top: 38rpx;
+  color: #999;
+}
+
+.startkan {
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+
+.startkan .button {
+  text-align: center;
+}
+
+.startkan .button .cview {
+  width: 250rpx;
+  height: 96rpx;
+  margin-left: 250rpx;
+  margin-top: 42rpx;
+  background-size: 100% 100%;
+  background-image: url(http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/startkan.png);
+  color: white;
+  font-weight: bold;
+  font-size: 30rpx;
+  letter-spacing: 4rpx;
+}
+
+.startkan .button .txt {
+  margin-top: 26rpx;
+}
+
+.nokannow {
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 4rpx;
+  padding-bottom: 28rpx;
+}
+
+.viewdetail {
+  height: 88rpx;
+  color: #333;
+  background-color: white;
+  margin-top: 6rpx;
+  padding-left: 26rpx;
+}
+
+.vtext {
+  margin-top: 28rpx;
+}
+
+.goods-detail-section .rightgo {
+  width: 20rpx;
+  height: 10rpx;
+  margin-top: 8rpx;
+}
+
+.goods-detail-section .rightgo-o {
+  width: 20rpx;
+  height: 10rpx;
+  margin-top: 42rpx;
+  margin-left: 624rpx;
+}
+
+.goods-detail-section .rightgo2 {
+  width: 10rpx;
+  height: 20rpx;
+  margin-top: 32rpx;
+  margin-left: 580rpx;
+}
+
+.goods-detail-section .rightgo2-o {
+  width: 10rpx;
+  height: 20rpx;
+  margin-top: 32rpx;
+  margin-left: 580rpx;
+}
+
+.pricebanner .ctimer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  height: 125rpx;
+}
+
+.pricebanner .ctimer image {
+  width: 342rpx;
+  height: 115rpx;
+}
+
+.pricebanner .ctimer>view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.ctimer .timerheader {
+  color: white;
+}
+
+.ctimer .v14 {
+  background-color: #929292;
+  text-align: center;
+}
+
+.stopkan {
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+
+.stopkan .button {
+  text-align: center;
+}
+
+.stopkan .button .cview {
+  width: 326rpx;
+  height: 84rpx;
+  border-radius: 40rpx;
+  margin-left: 212rpx;
+  margin-top: 58rpx;
+  margin-bottom: 58rpx;
+  background-color: #999;
+  color: white;
+  font-weight: bold;
+  font-size: 28rpx;
+  letter-spacing: 4rpx;
+}
+
+.stopkan .button .txt {
+  margin-top: 24rpx;
+}
+
+.notice {
+  position: absolute;
+  width: 750rpx;
+  top: 12rpx;
+}
+
+.notice .boardcast {
+  width: 550rpx;
+  height: 80rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top-right-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  align-items: center;
+}
+
+.noticeswiper {
+  width: 500rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.noticeswiper .swiper_item {
+  width: 90%;
+  overflow-x: auto;
+}
+
+.noticeicon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 30rpx;
+}
+
+.kefu {
+  position: relative;
+  margin-top: 12rpx;
+  margin-left: 50rpx;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 29.0rpx;
+  text-align: center;
+}
+
+.lineNum {
+  width: 1px;
+  height: 24rpx;
+  position: absolute;
+  top: 18rpx;
+  right: -10rpx;
+  background: rgba(51, 51, 51, 0.5);
+}
+
+.shop {
+  margin-top: 12rpx;
+  margin-left: 18rpx;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 29.0rpx;
+  text-align: center;
+}
+
+.kefu icon, .shop icon {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #fffaee;
+}
+
+.page-dialog-wrap .virtualPrice, .goods-detail-wrap .virtualPrice {
+  font-size: 24rpx;
+  color: #c9c9c9;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+view {
+  overflow-y: visible;
+}
+
+.page-dialog-close {
+  display: block;
+  width: 46.8rpx;
+  height: 46.8rpx;
+  border: 2rpx solid #67666f;
+  color: #67666f;
+  text-align: center;
+  line-height: 46.8rpx;
+  border-radius: 50%;
+  font-size: 37.44rpx;
+  top: 23.4rpx;
+  right: 23.4rpx;
+}
+
+.quantity input {
+  border: none;
+  height: 35px;
+  background-color: #f1f1f1;
+  padding: 0;
+  margin: 0 1px;
+  border-radius: 0;
+  width: 35px;
+  min-height: 35px;
+  line-height: 35rpx;
+  font-size: 14px;
+}
+
+.thumb {
+  float: left;
+  width: 200rpx;
+  height: 130rpx;
+  margin: 4.68rpx 23.4rpx 0 23.4rpx;
+  position: relative;
+}
+
+.thumb .thumb-wrap {
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: 2rpx solid #dedede;
+  border-radius: 12rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.thumb .thumb-wrap image {
+  width: 100%;
+  height: 100%;
+}
+
+.pay-goods-baseinfo {
+  min-height: 135rpx;
+}
+
+.pay-goods-baseinfo .pay-goods-title {
+  width: 55%;
+}
+
+.pay-current-price {
+  color: #f60;
+}
+
+.pay-current-price text {
+  vertical-align: middle;
+  font-size: 36rpx;
+}
+
+.pay-goods-models {
+  padding: 0 20rpx;
+  margin: -20rpx 0;
+  max-height: 600rpx;
+  overflow: scroll;
+}
+
+.pay-goods-models .pills-list {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.model-title {
+  display: block;
+  vertical-align: middle;
+  margin-bottom: 10rpx;
+}
+
+.pay-goods-models > view {
+  margin: 0;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #eee;
+}
+
+.pay-goods-models > view:last-child {
+  border-bottom: none;
+}
+
+.pills-list label {
+  color: #353535;
+  margin-bottom: 4rpx;
+  margin-top: 4rpx;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 16rpx;
+}
+
+.pills-list label.select {
+  position: relative;
+  color: #fff;
+  background-color: #c81e27;
+}
+
+.pills-list label.select:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.pay-goods-stock {
+  display: inline-block;
+  margin: 10rpx 20rpx 0 0;
+}
+
+.pay-buy-next, .pay-add-to-shoppingcart {
+  margin-top: 20rpx;
+  padding: 28rpx 20rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  border-radius: 0rpx;
+  background-color: #f5a623;
+  color: #fff;
+}
+
+.goods-detail-cart-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 28rpx;
+  background-color: #ff1616;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+}
+
+.goods-detail-section {
+  word-break: break-all;
+  background-color: #fff;
+  margin-top: 10rpx;
+  padding: 0 20rpx;
+}
+
+.comment-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.goods-details {
+  padding: 20rpx 0;
+  border-top: 0.5px solid #eee;
+  word-break: break-all;
+}
+
+.goods-details image {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.block-item {
+  padding: 20rpx 20rpx 30rpx 20rpx;
+}
+
+.comment-date, .comment-goods-model {
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+
+.comment-content {
+  margin: 20rpx 0 20rpx;
+  font-size: 26rpx;
+  line-height: 36rpx;
+}
+
+.comPage-comment-pics {
+  margin-bottom: 20rpx;
+}
+
+.comPage-comment-pics image {
+  width: 230rpx;
+  height: 230rpx;
+  margin-right: 10rpx;
+}
+
+.lookAllComments {
+  width: 200rpx;
+  line-height: 50rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #c81e27;
+  border-color: #c81e27;
+  padding: 0;
+  border-radius: 26rpx;
+}
+
+.comment-user-photo {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 50%;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+.commentPersonName {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.quantity text {
+  display: inline-block;
+  border: none;
+  height: 50rpx;
+  background-color: #f1f1f1;
+  padding: 0;
+  margin: 0 2rpx;
+  border-radius: 0;
+  min-height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  width: 50rpx;
+  text-align: center;
+}
+
+.minus:before, .plus:before, .plus:after {
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #878787;
+  bottom: 0;
+  content: '';
+}
+
+.minus.disabled:before, .plus.disabled:before, .plus.disabled:after {
+  background-color: #cacaca;
+}
+
+.plus:after {
+  width: 2px;
+  height: 8px;
+}
+
+.dialog-block-item .minus, .dialog-block-item  .plus {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  outline: 0 !important;
+  text-indent: -9999px;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-weight: normal;
+  background-color: #f1f1f1;
+  color: #878787;
+  border-radius: 2px;
+  border: none;
+}
+
+/* 迭代1.0 */
+
+/* 活动热度 */
+
+.activity-heat {
+  box-sizing: border-box;
+  border: 1px solid #fffaf7;
+  border-radius: 10rpx;
+  padding: 40rpx 30rpx;
+}
+
+.activity-heat .activity-flow, .activity-heat .activity-member {
+  position: relative;
+  display: flex;
+  color: #999;
+  font-size: 22rpx;
+  text-align: center;
+}
+
+.activity-heat .activity-flow {
+  justify-content: space-between;
+}
+
+.activity-heat .activity-member {
+  padding-top: 26rpx;
+}
+
+.activity-heat .flow-section {
+  position: relative;
+  flex: 1;
+}
+
+.activity-heat .flow-section:nth-child(1):after,
+.activity-heat .flow-section:nth-child(2):after {
+  position: absolute;
+  top: 50%;
+  margin-top: -21rpx;
+  right: 0;
+  content: '';
+  height: 42rpx;
+  width: 1rpx;
+  background: rgba(153, 153, 153, 0.2);
+}
+
+.activity-heat .flow-section view:nth-child(1) {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.activity-heat .member-section {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  color: #999;
+  font-size: 22rpx;
+}
+
+.activity-heat .member-section:nth-child(2) {
+  margin-left: 20rpx;
+}
+
+.activity-heat .member-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50rpx;
+  height: 50rpx;
+  background: #fff;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  margin-right: -10rpx;
+}
+
+.activity-heat .member-section image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.activity-heat .member-section icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40rpx;
+  background: #f1f1f1;
+  color: #dbdbdb;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+  border-radius: 50%;
+}
+
+/* /活动热度 */
+
+/* /迭代1.0 */
+
+.getFormId {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.getFormId button {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.isRelative {
+  position: relative;
+}

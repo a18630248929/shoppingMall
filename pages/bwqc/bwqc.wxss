@@ -1,0 +1,41 @@
+/* pages/bwqc/bwqc.wxss */
+
+page {
+  background-color: #0a0f13;
+}
+
+.bwqc {
+  width: 750rpx;
+  height: 2413rpx;
+}
+
+.seedetails {
+  height: 80rpx;
+  width: 200rpx;
+  font-size: 24rpx;
+  z-index: 999;
+  color: #d5dad0;
+}
+
+.location1 {
+  position: absolute;
+  top: 766rpx;
+  left: 489rpx;
+}
+
+.location2 {
+  position: absolute;
+  top: 1426rpx;
+  left: 489rpx;
+}
+
+.location3 {
+  position: absolute;
+  top: 2137rpx;
+  left: 489rpx;
+}
+.fxzx {
+  height: 30rpx;
+  width: 30rpx;
+  margin-bottom:-7rpx;
+}

@@ -1,0 +1,163 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/shopping-mall/shopping-mall",
+    "pages/personal/personal",
+    "pages/shoppingcart/shoppingcart",
+    "pages/coupon/coupon",
+    "pages/order/order",
+    "pages/robbuy/robbuy",
+    "pages/details/details",
+    "pages/centralnavigation/centralnavigation",
+    "pages/classification/classification",
+    "pages/jd/jd",
+    "pages/wyyx/wyyx",
+    "pages/coilcenter/coilcenter",
+    "pages/search/search",
+    "pages/orderPage/order",
+    "pages/login/jifenzhuce",
+    "pages/address/address",
+    "pages/address/location",
+    "pages/special/special",
+    "pages/category/category",
+    "pages/comment/comment",
+    "pages/bwqc/bwqc",
+    "pages/baiwang/baiwang",
+    "pages/collection/collection",
+    "pages/extension/extension",
+    "pages/orderdetails/orderdetails",
+    "pages/refund/refund"
+  ],
+  "subPackages": [
+    {
+      "root": "eCommerce",
+      "pages": [
+        "pages/addAddress/addAddress",
+        "pages/couponDescription/couponDescription",
+        "pages/goodsSameJourney/goodsSameJourney",
+        "pages/goodsShoppingCart/goodsShoppingCart",
+        "pages/myAddress/myAddress",
+        "pages/searchAddress/searchAddress",
+        "pages/transferOrderDetail/transferOrderDetail",
+        "pages/transferPage/transferPage",
+        "pages/transferPaySuccess/transferPaySuccess",
+        "pages/groupCenter/groupCenter",
+        "pages/groupOrderDetail/groupOrderDetail",
+        "pages/groupRules/groupRules",
+        "pages/joinGroupDetail/joinGroupDetail",
+        "pages/myGroup/myGroup",
+        "pages/goodsAdditionalInfo/goodsAdditionalInfo",
+        "pages/goodsAfterSaleDetail/goodsAfterSaleDetail",
+        "pages/goodsAlreadyRefunded/goodsAlreadyRefunded",
+        "pages/goodsComment/goodsComment",
+        "pages/goodsCustomerService/goodsCustomerService",
+        "pages/goodsDeliveryList/goodsDeliveryList",
+        "pages/goodsFavorites/goodsFavorites",
+        "pages/goodsFootPrint/goodsFootPrint",
+        "pages/goodsOrderDetail/goodsOrderDetail",
+        "pages/goodsOrderPaySuccess/goodsOrderPaySuccess",
+        "pages/goodsOrderProgress/goodsOrderProgress",
+        "pages/goodsRefundPage/goodsRefundPage",
+        "pages/goodsReturnInfor/goodsReturnInfor",
+        "pages/logisticsPage/logisticsPage",
+        "pages/makeComment/makeComment",
+        "pages/myOrder/myOrder",
+        "pages/previewGoodsOrder/previewGoodsOrder",
+        "pages/previewGoodsRefund/previewGoodsRefund",
+        "pages/sameJourneyLogistic/sameJourneyLogistic",
+        "pages/shoppingCart/shoppingCart",
+        "pages/transactionSuccess/transactionSuccess",
+        "pages/verificationCodePage/verificationCodePage",
+        "pages/memberDay/memberDay",
+        "pages/memberDayDetail/memberDayDetail",
+        "pages/memberDayList/memberDayList",
+        "pages/vipBenefits/vipBenefits",
+        "pages/vipCard/vipCard",
+        "pages/couponGoodsListPage/couponGoodsListPage",
+        "pages/couponList/couponList",
+        "pages/couponListPage/couponListPage",
+        "pages/couponReceiveListPage/couponReceiveListPage",
+        "pages/balance/balance",
+        "pages/recharge/recharge"
+      ]
+    },
+    {
+      "root": "openPlugin",
+      "pages": [
+        "18Fz4z4D/pages/index/index",
+        "18Fz4z4D/pages/order/order",
+        "18Fz4z4D/pages/pluginAdditionalInfo/pluginAdditionalInfo",
+        "18Fz4z4D/pages/pluginAddress/pluginAddress",
+        "18Fz4z4D/pages/pluginComment/pluginComment",
+        "18Fz4z4D/pages/pluginOrderDetail/pluginOrderDetail",
+        "18Fz4z4D/pages/pluginOrderPaySuccess/pluginOrderPaySuccess",
+        "18Fz4z4D/pages/previewPluginOrder/previewPluginOrder",
+        "18Fz4z4D/pages/productdetail/productdetail",
+        "18Fz4z4D/pages/productkanjia/productkanjia",
+        "18Fz4z4D/pages/productorder/productorder"
+      ]
+    },
+    {
+      "root": "group",
+      "pages": [
+        "pages/gpgoodsDetail/gpgoodsDetail",
+        "pages/gpgoodsList/gpgoodsList",
+        "pages/gpgroupDetail/gpgroupDetail",
+        "pages/gpmyOrder/gpmyOrder",
+        "pages/gporderDetail/gporderDetail",
+        "pages/gppaySuccess/gppaySuccess",
+        "pages/gpplaylaws/gpplaylaws",
+        "pages/previewGroupOrder/previewGroupOrder"
+      ]
+    },
+    {
+      "root": "order",
+      "pages": [
+        "pages/userCenterComponentPage/userCenterComponentPage",
+        "pages/storeSinglePage/storeSinglePage",
+        "pages/groupGoodsDetail/groupGoodsDetail",
+        "pages/goodsDetail/goodsDetail",
+        "pages/page10000/page10000",
+        "pages/orderDetail/orderDetail"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "百望商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#c81e27",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/shopping-mall/shopping-mall",
+        "text": "首页",
+        "selectedIconPath": "/pages/image/home.png",
+        "iconPath": "/pages/image/home1.png"
+      },
+      {
+        "pagePath": "pages/classification/classification",
+        "text": "分类",
+        "selectedIconPath": "/pages/image/fenlei.png",
+        "iconPath": "/pages/image/fenlei1.png"
+      },
+      {
+        "pagePath": "pages/shoppingcart/shoppingcart",
+        "text": "购物车",
+        "selectedIconPath": "/pages/image/gwc.png",
+        "iconPath": "/pages/image/gwc1.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "selectedIconPath": "/pages/image/wode.png",
+        "iconPath": "/pages/image/wode1.png"
+      }
+    ]
+  }
+}

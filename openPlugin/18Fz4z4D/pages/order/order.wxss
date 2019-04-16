@@ -1,0 +1,115 @@
+@import "../../utils/common.wxss";
+
+.white {
+  background: white;
+}
+
+.l1 {
+  color: #333;
+  overflow: visible;
+}
+
+.l1title {
+  padding-top: 30rpx;
+  padding-bottom: 25rpx;
+  overflow: visible;
+}
+
+.l1title text {
+  padding-bottom: 23rpx;
+  font-size: 28rpx;
+}
+
+.l1title.active text {
+  color: #c81e27;
+  border-bottom: 4rpx #c81e27 solid;
+}
+
+.lt2 {
+  color: #999;
+}
+
+.lt2 .active {
+  color: #c81e27;
+}
+
+.egg {
+  width: 257rpx;
+  height: 307rpx;
+  margin-top: 163rpx;
+  margin-bottom: 94rpx;
+}
+
+.item-block {
+  padding-top: 31rpx;
+  padding-left: 33rpx;
+  padding-right: 33rpx;
+  padding-bottom: 25rpx;
+}
+
+.item-block .listItem {
+  margin-top: 30rpx;
+  padding: 19rpx;
+  border-top: 1px solid rgba(238, 238, 238, 0.5);
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+}
+
+.goods-content .goods-model {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.myOrder-list-bottom {
+  text-align: right;
+  padding-top: 20rpx;
+  border-top: 1px solid #eee;
+  margin-top: 20rpx;
+}
+
+.cash-delivery {
+  display: inline-block;
+  padding: 0 10rpx;
+  background: #f2303e;
+  color: #fff;
+  font-size: 25rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+  border-radius: 4rpx;
+}
+
+.getFormId {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.getFormId button {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.isRelative {
+  position: relative;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #c81e27;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 0 15rpx;
+  margin: 0;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 25rpx;
+  -webkit-appearance: none;
+  text-align: center;
+  height: 70rpx;
+  color: #fff;
+}

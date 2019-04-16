@@ -1,0 +1,338 @@
+<import src="../../../../components/wxParse/wxParse.wxml" />
+<component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
+<!-- pages/product/detail.wxml -->
+<view>
+  <view wx:if="{{goodsInfo.id>0}}">
+    <view class='cover'>
+      <view class="notice flex-row" style="position:{{slidMask ? 'fixed' : 'absolute'}};background:{{slidMask ? '#fff' : '' }};top:{{slidMask ? '0rpx' : '16rpx' }};z-index:1;">
+        <view class='boardcast font-12 flex-row'>
+          <image src='/pages/image/laba.png' class='noticeicon  '></image>
+          <view class='noticeswiper'>
+            <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="20000" style='height:100%;'>
+              <block wx:for="{{boradcast}}" wx:key="key">
+                <swiper-item>
+                  <view class="swiper_item ">
+                    <text>恭喜{{item.nickname}}砍价成功，共砍掉</text>
+                    <text class='primary'>{{item.bargain_price}}</text>
+                    <text>元</text>
+                  </view>
+                </swiper-item>
+              </block>
+              <swiper-item wx:if="{{boradcast.length==0}}">
+                <view class="swiper_item ">砍价火热进行中！</view>
+              </swiper-item>
+            </swiper>
+          </view>
+        </view>
+        <!-- <view class='kefu isRelative' style="background:{{slidMask ? '' : 'rgba(0, 0, 0, 0.6)'}}">
+          <contact-button type="default-light" size="20" session-from="kanjia" style='position:absolute;opacity:0;'></contact-button>
+          <icon class="ico-moon icon-service2" style="color:{{slidMask? '#333' : '#FFFAEE'}}"></icon>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+          <view class="lineNum" wx:if="{{slidMask}}"></view>
+        </view>
+        <view class='shop isRelative' style="background:{{slidMask? '' : 'rgba(0, 0, 0, 0.6)'}}">
+          <icon class="ico-moon icon-franchisee-manager" style="color:{{slidMask? '#333' : '#FFFAEE'}}"></icon>
+          <form bindsubmit="goToHomepage" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view> -->
+      </view>
+      <image data-src="{{goodsInfo.cover}}" src="{{goodsInfo.cover}}" class='cover isRelative' catchtap="clickPlusImages" mode="aspectFill">
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </image>
+    </view>
+    <view class='pricebanner flex-row'>
+      <view class='price'>
+        <text class='font-20'>￥</text>
+        <text class='font-35'>{{goodsInfo.min_priceObj.h}}.</text>
+        <text class='font-23'>{{goodsInfo.min_priceObj.s}}</text>
+      </view>
+      <view class='info'>
+        <view class='font-11 oldprice'>￥{{goodsInfo.init_price}}</view>
+        <text class='reminder font-12'>仅剩{{goodsInfo.goods_num-goodsInfo.sales}}件</text>
+      </view>
+      <block wx:if="{{(goodsInfo.enddiff&&goodsInfo.countDiff > 0) && is_delete == '0' && goodsInfo.status != '1' }}">
+        <view class='timer' wx:if="{{goodsInfo.endBox}}">
+          <image src="http://cdn.jisuapp.cn/static/plugin/images/bargain/page/timerbg.png"></image>
+          <view>
+            <view class='timerheader font-11'>活动时间剩余</view>
+            <view class='tm flex-row' style="display:flex;justify-content:center;">
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.hour}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>时</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.minute}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>分</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.second}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>秒</view>
+            </view>
+          </view>
+        </view>
+        <view class='ctimer' wx:if="{{!goodsInfo.endBox}}">
+          <image src="http://cdn.jisuapp.cn/static/plugin/images/bargain/page/timerbg2.png"></image>
+          <view>
+            <view class='timerheader font-11'>距离活动开始</view>
+            <view class='tm flex-row'>
+              <view class='v14 font-11' wx:for="{{goodsInfo.starttime_s.hour}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>时</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.starttime_s.minute}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>分</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.starttime_s.second}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>秒</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='ctimer' wx:if="{{!goodsInfo.startdiff}}">
+          <image src="http://cdn.jisuapp.cn/static/plugin/images/bargain/page/timerbg2.png"></image>
+          <view>
+            <view class='timerheader font-11'>活动时间剩余</view>
+            <view class='tm flex-row' style="display:flex;justify-content:center;">
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.hour}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>时</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.minute}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>分</view>
+              <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.second}}" wx:key="">
+                <view class="iv14">{{item}}</view>
+              </view>
+              <view class='font-12 marker'>秒</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class='flex-row detail'>
+      <view class='title font-16'>
+        {{goodsInfo.title}}
+        <view class='express font-11' style='font-size:26rpx;'>运费：{{goodsInfo.express_fee}}</view>
+      </view>
+      <view class='share isRelative'>
+        <button class="share-mask" open-type="share"></button>
+        <image class='shareimg' src="/pages/image/fen.png" style='width:45rpx;height:45rpx;'></image>
+        <!-- <button class='nobutton font-11 isRelative' style='font-size:26rpx;'>分享</button> -->
+      </view>
+    </view>
+    <block wx:if="{{goodsInfo.enddiff && goodsInfo.countDiff>0 && is_delete == '0' && goodsInfo.status != '1' && goodsInfo.startBox}}">
+      <view class='startkan' wx:if="{{goodsInfo.endBox}}">
+        <view class='button flex-row'>
+          <view class="cview hangKan">
+            <view class='txt isRelative'>
+              发起砍价
+              <form bindsubmit="tryAddToCart" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </view>
+        <view class='nokannow'>
+          <text>暂无进行中的砍价</text>
+        </view>
+      </view>
+      <view class='stopkan hangKan' wx:if="{{!goodsInfo.endBox}}">
+        <view class='button flex-row'>
+          <view class='cview'>
+            <view class='txt'>砍价活动未开始</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='stopkan hangKan'>
+        <view class='button flex-row'>
+          <view class='cview'>
+            <view class='txt'>砍价活动已结束</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="goods-detail-section activity-heat">
+      <view class="activity-flow">
+        <view class="flow-section">
+          <view>{{activityData.visit_num || 0}}</view>
+          <view>查看</view>
+        </view>
+        <view class="flow-section">
+          <view>{{activityData.participation_num || 0}}</view>
+          <view>参与</view>
+        </view>
+        <view class="flow-section">
+          <view>{{activityData.help_bargain_num || 0}}</view>
+          <view>帮砍</view>
+        </view>
+      </view>
+      <view class="activity-member" wx:if="{{activityData.participation_num}}">
+        <view class="member-section">
+          <view class="member-image" wx:for="{{activityData.help_bargain_cover}}" wx:key="">
+            <image src="{{item.cover}}"></image>
+          </view>
+          <view class="member-image" wx:if="{{activityData.participation_num > 8}}">
+            <icon class="ico-moon icon-more"></icon>
+          </view>
+        </view>
+        <view class="member-section">{{activityData.participation_num}}人正在参加</view>
+      </view>
+    </view>
+    <view class="goods-detail-section">
+      <view class="comment-title">
+        <text>评价 ({{ commentNums[0] || 0 }})</text>
+        <image class='rightgo' bindtap="goToCommentPage" src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/detaildown.png"></image>
+      </view>
+      <view class="block-item" wx:if="{{ commentExample }}">
+        <view>
+          <view class="comment-item">
+            <view>
+              <image class="comment-user-photo" src="{{ commentExample.buyer_headimgurl || defaultPhoto }}"></image>
+              <text class="commentPersonName">{{ commentExample.buyer_nickname }}</text>
+            </view>
+            <view class="comment-date">{{ commentExample.add_time }}</view>
+            <view class="comment-content">{{ commentExample.assess_info.content }}</view>
+            <view wx:if="{{ commentExample.assess_info.has_img }}" class="comPage-comment-pics">
+              <image wx:for="{{ commentExample.assess_info.img_arr }}" wx:for-item="imgSrc" src="{{ imgSrc }}" wx:key="" data-src="{{ imgSrc }}" data-srcarr="{{ commentExample.assess_info.img_arr }}" catchtap="clickPlusImages"></image>
+            </view>
+          </view>
+          <view style="text-align:center;" class="isRelative">
+            <button class="btn lookAllComments" bindtap="goToCommentPage">查看全部评价</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="goods-detail-section">
+      <view class="comment-title">
+        <text>
+          商品详情
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </text>
+        <image class='rightgo' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/detaildown.png"></image>
+      </view>
+      <view class="goods-details">
+        <template is="wxParse" data="{{ wxParseData: wxParseDescription.nodes }}" />
+      </view>
+    </view>
+    <view>
+      <block wx:if="{{goodsInfo.countDiff>0 &&  is_delete == '0' && goodsInfo.status != '1'}}">
+        <block wx:if="{{goodsInfo.originPay}}">
+          <view style="height:110rpx;"></view>
+          <view class='nowbuy font-14' style='box-sizing:border-box;height:110rpx;position:fixed;bottom:0;left:0;width:100%;text-align:center;'>
+            <view data-id="{{goodsInfo.id}}" data-bargainid="{{goodsInfo.bargainid}}" style='position:absolute;bottom:0;left:0;width:100%;background: #c81e27;color:#fff;height:105rpx;line-height:105rpx;' bindtap='goGoodsDetail' class='isRelative'>
+              原价购买
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </block>
+        <block wx:else style="position:relative;">
+          <view style="height:110rpx" wx:if="{{showBottomKan}}"></view>
+          <view class='nowbuy font-14' style='text-align:center;position:fixed;bottom:0;left:0;width:100%;height:103rpx;' wx:if="{{showBottomKan}}">
+            <view data-id="{{goodsInfo.id}}" data-bargainid="{{goodsInfo.bargain_id}}" data-orderid="{{goodsInfo.order_id}}" style='background: #c81e27;color:#fff;height:105rpx;line-height:105rpx;' bindtap='tryAddToCart'>
+              发起砍价
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <view style="height:110rpx;"></view>
+        <view class='nowbuy font-14' style='box-sizing:border-box;height:105rpx;position:fixed;bottom:0;left:0;width:100%;text-align:center;'>
+          <view data-id="{{goodsInfo.id}}" data-bargainid="{{goodsInfo.bargainid}}" style='background: #c81e27;color:#fff;height:105rpx;line-height:105rpx;' bindtap='goGoodsDetail' class='isRelative'>
+            原价购买
+            <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+              <button formType="submit" hover-class="none" class='invisibleclass'></button>
+            </form>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view id="payDialog" class="page-dialog-wrap" hidden="{{ addtocart!=true}}">
+    <view class="page-bottom-dialog">
+      <view class="page-bottom-content">
+        <view class="pay-close-dialog page-dialog-close" bindtap="closeAddToCart">×</view>
+        <view class="dialog-block-item">
+          <view class="thumb">
+            <view class="thumb-wrap">
+              <image class="pay-goods-cover" src="{{ goodsInfo.cover }}"></image>
+            </view>
+          </view>
+          <view class="pay-goods-baseinfo">
+            <view class="pay-goods-title ellipsis">{{ goodsInfo.title }}</view>
+            <view class="pay-goods-price">
+              <view class="pay-current-price">
+                ¥
+                <text style="font-weight:bold; font-size:36rpx;">
+                  {{ goodsInfo.now_priceObj.h }}.
+                </text>
+                <text style="font-weight:bold; font-size:36rpx;">
+                  {{ goodsInfo.now_priceObj.s }}
+                </text>
+              </view>
+            </view>
+            <view wx:if="{{selectModelInfo.models_text}}" class="pay-checked-text clearfix">
+              已选：{{ selectModelInfo.models_text }}
+            </view>
+          </view>
+        </view>
+        <view class="dialog-block-item" hidden="{{ !goodsInfo.model_items.length }}">
+          <view class="pay-goods-models">
+            <view wx:for="{{ goodsInfo.model }}" wx:for-item="model" wx:for-index="modelIndex" wx:key="">
+              <text class="model-title">{{ model.name }}</text>
+              <label class="pills-list">
+                <label wx:for="{{ model.subModelName }}" wx:for-item="name" wx:key="" data-model-index="{{ modelIndex }}" data-submodel-index="{{ index }}" class="subModel {{ selectModelInfo.models[modelIndex] == model.subModelId[index] ? 'select' : '' }}" data-submodel-id="{{ model.subModelId[index] }}" bindtap="selectSubModel">
+                  {{ name }}
+                </label>
+              </label>
+            </view>
+          </view>
+        </view>
+        <view class="dialog-block-item" style="padding-left:10px;padding-right:10px;">
+          <view class="clearfix dialog-bottom-range">
+            <text>数量</text>
+            <text class="buy-limit" wx:if="{{isSeckill}}">
+              (限购{{goodsInfo.seckill_buy_limit}}件)
+            </text>
+            <view class="pull-right">
+              <label class="pull-left" style='position:relative;top:9rpx;left:-9rpx;'>
+                <text>库存</text>
+                <text class="pay-goods-stock">{{ selectModelInfo.stock }}</text>
+              </label>
+              <view class="quantity pull-left">
+                <label class="minus {{ selectModelInfo.buyCount <= 1 ? 'disabled' : '' }}"></label>
+                <input class="pay-buy-count" type="number" class="txt" value="{{ selectModelInfo.buyCount }}" bindinput="inputBuyCount" />
+                <label class="plus {{ (selectModelInfo.buyCount >= selectModelInfo.stock) || (isSeckill && selectModelInfo.buyCount >= goodsInfo.seckill_buy_limit) ? 'disabled' : '' }}"></label>
+                <view class="response-area response-area-minus" bindtap="clickMinusButton"></view>
+                <view class="response-area response-area-plus" bindtap="clickPlusButton"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view>
+          <view>
+            <view class="btn btn-block btn-black pay-buy-next" bindtap="buyDirectlyNextStep">
+              确定
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

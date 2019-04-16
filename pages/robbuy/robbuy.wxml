@@ -1,0 +1,61 @@
+<view class='dis-row kk'>
+  <view class='rob-time'>
+    <view>{{time}}</view>
+    <view class='ykq'>已结束</view>
+  </view>
+  <view class='rob-time'>
+    <view>{{time1}}</view>
+    <view class='ykq'>已结束</view>
+  </view>
+  <view class='rob-time dq'>
+    <view>{{time2}}</view>
+    <view class='ykq'>已开抢</view>
+  </view>
+  <view class='rob-time'>
+    <view>{{time3}}</view>
+    <view class='ykq'>未开始</view>
+  </view>
+  <view class='rob-time'>
+    <view>{{time4}}</view>
+    <view class='ykq'>未开始</view>
+  </view>
+</view>
+
+
+<view>
+  <view class='dis_row'>
+    <text class='qgz'>抢购中 先下单先得哦</text>
+    <text class='jjs'>距结束：</text>
+    <view class='dtime'>
+      <text class='More-1'>{{hour}}</text> :
+      <text class='More-1'>{{minute}}</text> :
+      <text class='More-1'>{{second}}</text>
+
+    </view>
+  </view>
+  <view wx:for="{{robbuy}}" wx:key="this" class='mslb' data-id='{{item.goods_id}}' bindtap='msdetails'>
+    <image src='{{item.default_image}}'></image>
+    <view class='dis-cou kua'>
+      <text class='spjj'>{{item.goods_name}}</text>
+      <view class='dis-row float'>
+        <view class='dis-cou'>
+          <text class='msxj'>￥{{item.Price}}</text>
+          <text class='msyj'>￥{{item.scPrice}}</text>
+        </view>
+        <view>
+          <view class='ljgm'>立即抢购</view>
+
+          <!-- <view class='bfb'>已售24%</view>
+          <progress border-radius="30" activeColor="#c81e27" percent="24" active /> -->
+
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="wui-loadmore wui-loadmore-nomore">
+  <view class="wui-loadmore-tips">我是有底线的</view>
+  <view class="wui-loadmore-line"></view>
+</view>

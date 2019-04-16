@@ -1,0 +1,194 @@
+<component-memberDiscount id="component-memberDiscount" discountType="{{ discountList }}" bind:afterSelectedDiscount="afterSelectedBenefit"></component-memberDiscount>
+<view wx:if="{{goodsInfo.id>0}}">
+  <view style='height:80rpx;background:white;padding-left:22rpx; display:flex;align-items:center;margin-bottom:5rpx;'>
+    <view>
+      <image style="width:22rpx;height:22rpx;" src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/emark.png"></image>
+    </view>
+    <view style='color: #c81e27;margin-left:12rpx;font-size:24rpx;'>提交订单后，砍价商品价格确定，不可继续砍价。</view>
+  </view>
+  <view class="preview-goods-order-wrap" id="preview-goods-order">
+    <view class="preview-goods-order-section delivery-method-wrap">
+      <view class="delivery-method" wx:if="{{storeConfig.is_self_delivery == 1 && storeConfig.express == 1}}">
+        <view style="{{'border-color:' + storeStyle.theme + ';color:' + storeStyle.theme + (is_self_delivery == 0 ? ';color: #fff;background:' + storeStyle.theme : '')}}" class="merchant-delivery {{ is_self_delivery == 0 ? 'active' : ''}}" catchtap="deliveryWayChange" data-type="0">
+          商家配送
+        </view>
+        <view style="{{'border-color:' + storeStyle.theme + ';color:' + storeStyle.theme + (is_self_delivery == 1 ? ';color: #fff;background:' + storeStyle.theme : '')}}" class="delivery-myself {{ is_self_delivery == 1 ? 'active' : ''}}" catchtap="deliveryWayChange" data-type="1">
+          上门自提
+        </view>
+      </view>
+      <view hidden="{{ is_self_delivery == 1 }}">
+        <block wx:if="{{ selectAddress.id}}">
+          <view class="address-box" bindtap="goToMyAddress" s="{{ selectAddress.id }}">
+            <text class="ico-moon icon-goods-location"></text>
+            <view class="address-detail">
+              <view class="buyer-name-box">
+                <text wx:if="{{ storeConfig.is_self_delivery == 0 && storeConfig.express == 1 }}" class="store-config-label" style='height:37rpx;line-height:13rpx;'>
+                  快递
+                </text>
+                <text class="buyer-name">{{ selectAddress.address_info.name }}</text>
+                <text>{{ selectAddress.address_info.contact }}</text>
+              </view>
+              <view class="buyer-address">
+                {{ selectAddress.address_info.province.text + selectAddress.address_info.city.text + selectAddress.address_info.district.text + selectAddress.address_info.detailAddress }}
+              </view>
+            </view>
+            <view class="ico-moon icon-rightarrow"></view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="pull-right ico-moon icon-rightarrow"></view>
+          <view bindtap="goToMyAddress">
+            <text class="ico-moon icon-goods-location"></text>
+            <text class="add-new-address">新增地址</text>
+          </view>
+        </block>
+      </view>
+      <view hidden="{{ is_self_delivery == 0 }}">
+        <block wx:if="{{ selectDelivery.id }}">
+          <view class="address-box" bindtap="toDeliveryList" data-address-id="{{ selectDelivery.id }}">
+            <text class="ico-moon icon-goods-location"></text>
+            <view class="address-detail">
+              <view class="buyer-name-box">
+                <text wx:if="{{ storeConfig.is_self_delivery == 1 && storeConfig.express == 0 }}" class="store-config-label">
+                  上门自提
+                </text>
+                <text class="buyer-name">{{ selectDelivery.contact_name }}</text>
+                <text>{{ selectDelivery.service_phone }}</text>
+              </view>
+              <view class="buyer-address">
+                {{ selectDelivery.region_data.region_string + selectDelivery.address_detail }}
+              </view>
+            </view>
+            <view class="ico-moon icon-rightarrow"></view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="address-null-box">
+            <view class="pull-right ico-moon icon-rightarrow"></view>
+            <view bindtap="toDeliveryList">
+              <text class="ico-moon icon-goods-location"></text>
+              <text class="add-new-address">选择自提点</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="address-bg">
+        <image src="http://develop.zhichiwangluo.com/static/webapp/images/xcx-goods/goods-address-bg.png"></image>
+      </view>
+    </view>
+    <view class="preview-goods-order-list preview-goods-order-section">
+      <view class="preview-goods-order-item">
+        <image class="preview-goods-cover" src="{{goodsInfo.cover}}" mode="aspectFill"></image>
+        <view class="preview-goods-content">
+          <view class="preview-goods-title">{{goodsInfo.title}}</view>
+          <view wx:if="{{ selectmodel }}" class="preview-goods-model">
+            {{ selectmodel == '""' ? "" : selectmodel }}
+          </view>
+          <view class="preview-quantity-section">
+            <view style="display:inline-block;">
+              <view class="preview-init-price">¥ {{goodsInfo.init_price}}</view>
+              <view class="preview-goods-price">
+                ¥ {{goodsInfo.now_priceObj.h}}.{{goodsInfo.now_priceObj.s}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="preview-goods-order-section message-wall" style='padding:0 36rpx;'>
+      <text>买家留言</text>
+      <input value="{{comment}}" bindinput='commentChange' placeholder="建议留言前先与商家沟通" placeholder-class='placeholder-wall'></input>
+    </view>
+    <!-- <view class="preview-goods-order-section" wx:if='{{deliverytype=="express"}}'>
+      <block wx:if="{{ selectAddress.id }}">
+        <view style="position:relative;" bindtap="goToMyAddress" data-address-id="{{ selectAddress.id }}">
+          <view wx:if="{{selectAddress.address_info}}">
+            <view style="margin-bottom:7px;">{{ selectAddress.address_info.name }} {{ selectAddress.address_info.contact }}</view>
+            <view>{{ selectAddress.address_info.province.text + selectAddress.address_info.city.text + selectAddress.address_info.district.text + selectAddress.address_info.detailAddress }}</view>
+          </view>
+          <view style="margin-bottom:7px;" wx:else>请选择地址</view>
+          <view class="preview-address-options">
+            <text style="margin-right:15px;">更换</text>
+            <text bindtap="showAddAddress">添加地址</text>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="pull-right ico-moon icon-rightarrow"></view>
+        <view bindtap="gotoSelectAddress">添加地址</view>
+      </block>
+    </view>
+    <view class="preview-goods-order-section" wx:if='{{deliverytype=="self"}}'>
+      <view bindtap="openStoreLocation">
+        <label class="ico-moon icon-location"></label>{{shop.region_string + shop.shop_location}}
+      </view>
+      <view style="margin:12px 0;" bindtap="makeStorePhoneCall">
+        <label class="ico-moon icon-phone"></label>{{shop.shop_contact}}</view>
+      <view style="font-size:12px;color:#aaa;margin-left:2px;">亲,勾选上门店自提,需要自己去门店取货哦！</view>
+    </view> -->
+    <view class="preview-goods-order-section" style="margin-bottom:1px;">
+      商品金额
+      <text class="pull-right">¥ {{ goodsInfo.init_price }}</text>
+    </view>
+    <view class="preview-goods-order-section" style="margin-bottom:1px;">
+      <view class="preview-section-title">
+        活动优惠:
+        <view class="pull-right benefit-method-wrap">
+          <text>砍价</text>
+          <text class="bargain-price">- ￥ {{goodsInfo.bargain_price}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="preview-goods-order-section" bindtap="showMemberDiscount" wx:if="{{ discountList.length }}" style="margin-bottom:1px;padding:0 30rpx;">
+      <view class="balance-switch">
+        <text>优惠方式</text>
+        <view class="ico-moon icon-rightarrow pull-right"></view>
+        <text class="pull-right">{{ selectDiscountInfo.name }}</text>
+      </view>
+      <view hidden="{{ selectDiscountIndex == 0 }}" class="balance-price">
+        <text class="pull-right" style="{{ 'color:' + storeStyle.theme }}">
+          - ¥ {{ discount_cut_price }}
+        </text>
+      </view>
+    </view>
+    <view class="preview-goods-order-section" style="margin-bottom:1px;">
+      运费
+      <text class="pull-right">¥ {{express_fee}}</text>
+    </view>
+    <view class="preview-goods-order-section" wx:if="{{ balance != 0 && isUseDiscounts !=0  }}" style="margin-bottom:1px;padding:0 30rpx;">
+      <view class="balance-switch">
+        <text>使用储值金</text>
+        <switch color="{{ storeStyle.theme }}" class="pull-right" checked="true" bindchange="useBalanceChange" />
+      </view>
+      <view hidden="{{ !useBalance }}" class="balance-price">
+        <text class="pull-right" style="{{ 'color:' + storeStyle.theme }}">
+          - ¥ {{ deduction }}
+        </text>
+      </view>
+    </view>
+    <view class="preview-goods-order-section" wx:if="{{  totalPayment > 0 && ((is_self_delivery == 1 &&selfPayOnDelivery == 1) || (is_self_delivery == 0 && canCashDelivery === 1))}}" style="margin-bottom:1px;padding:0 30rpx;">
+      <view class="balance-switch">
+        <text>货到付款（先下单，验货后支付）</text>
+        <switch color="{{ storeStyle.theme }}" class="pull-right" bindchange="useCashDelivery" checked="{{ cashOnDelivery }}" />
+      </view>
+    </view>
+    <view class="preview-goods-order-section" bindtap="goToAdditionalInfo" wx:if="{{ hasAdditionalInfo}}">
+      补充信息
+      <view class="ico-moon icon-rightarrow pull-right" style="color:#aaa;"></view>
+    </view>
+    <view class="bottom-nav">
+      <view class="preview-goods-total-price">
+        合计:
+        <text class="price-count">
+          ¥
+          <text>{{totalPrice}}</text>
+        </text>
+      </view>
+      <form report-submit="true" bindsubmit="confirmPayment">
+        <button formType="submit" style="{{ 'background:' + storeStyle.theme }}">
+          {{ cashOnDelivery ? '货到付款' : '在线支付' }}
+        </button>
+      </form>
+    </view>
+  </view>
+</view>

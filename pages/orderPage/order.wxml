@@ -1,0 +1,193 @@
+<!-- pages/orderPage/order.wxml -->
+<!-- 选择地址 -->
+<view id='order' bindtap='address'>
+  <view class="order_diz">
+    <image src='../image/diz.png' mode='widthFix' />
+  </view>
+  <view class="order_dizi">
+    <view>
+      <text style='padding-bottom:10rpx;'>收货人:</text>
+      <text>{{list.name}}</text>
+      <text style='color:red;'>{{list.tel}}</text>
+    </view>
+    <view>
+      <text>收货地址:</text>
+      <text>{{list.province}}{{list.city}}{{list.area}}{{list.town}}{{list.address}}</text>
+    </view>
+  </view>
+  <!-- <view wx:if="{{list.length<=0}}">请输入地址</view> -->
+  <view class="order_diz">
+    <image src='../image/gengduo.png' mode='widthFix' />
+  </view>
+</view>
+
+
+<!-- 订单商品 -->
+<view wx:for='{{orderpage}}' wx:key class='order_xq_box'>
+  <view class='orderShop'>{{item.money_info.store_name}}</view>
+  <view wx:for='{{item.goods_list}}' wx:for-item='itemList' wx:key class='orderbox'>
+    <view class="order_xq">
+      <view>
+        <image src="{{itemList.goods_info.default_image}}" mode="widthFix"></image>
+      </view>
+      <view class='orderName'>{{itemList.goods_info.goods_name}}</view>
+      <view>X{{itemList.quantity}}</view>
+    </view>
+    <view class='money-goods'>{{itemList.goods_info.Price}}</view>
+  </view>
+  <view class="expressFee">
+    <text>快递费:</text>
+    <text wx:if='{{item.money_info.freight == 0}}'>包邮</text>
+    <text wx:else>{{item.money_info.freight - ''}}元</text>
+  </view>
+  <view class="discount" wx:if='{{item.money_info.couponMoney}}' catchtap='shopClick' data-data='{{item.money_info}}'>
+    <text>优惠促销</text>
+    <text>{{item.money_info.couponMoney}}  〉 </text>
+  </view>
+  <view class="leavingMessage">
+    <view>买家留言：</view>
+    <input bindblur="bindTextAreaBlur" placeholder="对本次交易的说明及建议填写" data-cartid="{{item.goods_list}}" data-index="{{index}}"></input>
+  </view>
+  <view class='subtotal'>
+    <view>共计{{item.money_info.num}}件商品 小计:</view>
+    <view style='color:#c81e27;'>{{item.money_info.totalMoney}}元</view>
+  </view>
+</view>
+<!-- 支付 -->
+<!--disabled='{{methodPayment.totalMoney <= methodPayment.lurpak / 100? false:true}}' -->
+<radio-group class="radio-group" bindchange="balanceChange">
+  <view>
+    <view>微信支付</view>
+    <radio value="wx" color='#c81e27' checked='{{checked}}' />
+  </view>
+  <view>
+    <view>金积分支付(剩余金积分{{methodPayment.lurpak}})</view>
+    <radio value="{{methodPayment.lurpak}}" checked='{{!checked}}' color='#c81e27' />
+  </view>
+  <view>
+    <view>可用{{methodPayment.last_integral_all}}积分抵扣{{methodPayment.last_integral_cost_money_all}}元</view>
+    <switch checked='{{switchChangefalg}}' bindchange="switchChange" color='#c81e27' />
+  </view>
+  <view>
+    <view>预计赠送{{switchChangefalg?methodPayment.score:methodPayment.noscore}}银积分</view>
+  </view>
+  <view class="discount" wx:if='{{methodPayment.couponMoney}}' catchtap='ptClick' data-data='{{methodPayment.ptList}}'>
+    <text>平台优惠券</text>
+    <text>{{methodPayment.couponMoney}}〉 </text>
+  </view>
+</radio-group>
+<view style='height:120rpx;'></view>
+<!-- 底部导航 -->
+<view class="order_bottom">
+  <view>
+    合计:
+    <text>￥{{switchChangefalg?methodPayment.totalMoney:orderpageTotalprice}}</text> 共计:
+    <text>{{methodPayment.totalNum}}</text> 件
+  </view>
+  <view bindtap='submission'>提交订单</view>
+</view>
+
+<!-- 地址为空时 -->
+<view class='modalFrame' wx:if='{{modalFrame}}'>
+  <view>
+    <view class='modalFrame_Tips'>
+      <view>提示</view>
+      <view>{{modalFrameText}}</view>
+    </view>
+    <view class='modalFrame_Choice'>
+      <view catchtap='retUrn'>返回</view>
+      <view class='modalFrame_Choice_height'></view>
+      <view catchtap='well'>好的</view>
+    </view>
+  </view>
+</view>
+<!-- 优惠券单选按钮拼接商家ID和优惠券ID -->
+<!-- 优惠券 -->
+<view class='promotion' wx:if='{{couponSwitch}}'>
+  <view>
+    <view class='promotionCoupon'>
+      <view>优惠券</view>
+      <image src='/pages/image/sc.png' catchtap='couponClose'></image>
+    </view>
+    <view class='corponUse'>
+      <view catchtap='couponClick' data-index='1' class='{{subscript == 1 ? "active":""}}'>可有用优惠券</view>
+      <view catchtap='couponClick' data-index='2' class='{{subscript == 2 ? "active":""}}'>不可用优惠券</view>
+    </view>
+    <scroll-view scroll-y='true' class='promotionScroll'>
+      <!-- 可使用优惠券 -->
+      <!-- 店铺券 -->
+      <radio-group bindchange="couponRadio" class='promotionScroll_view' wx:if='{{subscript == 1}}'>
+        <view wx:for='{{availableCoupons}}' wx:key class='mayuse_coupon' wx:if='{{item.type == 1}}'>
+          <view class='mayuse_coupon_a'>
+            <view>
+              <view>￥
+                <text>{{item.jian}}</text>
+              </view>
+            </view>
+            <view>
+              <view>减满券</view>
+              <view>满{{item.man}}元使用</view>
+            </view>
+          </view>
+          <view class='mayuse_coupon_b'>
+            <view>{{item.coupondesc}}</view>
+            <view>{{item.latest_start_time}}-{{item.latest_closing_time}}</view>
+          </view>
+          <radio color='#c81e27' checked='{{item.is_select == 1}}' value='{{shopID==""?item.code:item.id}}' class='coupon_radio'></radio>
+        </view>
+        <view wx:for='{{availableCoupons}}' wx:key class='mayuse_coupon {{item.type == 2? "xian":""}}' wx:if='{{item.type == 2}}'>
+          <view class='mayuse_coupon_a'>
+            <view>￥
+              <text>{{item.cash}}</text>
+            </view>
+            <view>
+              <view>现金券</view>
+              <view>满{{item.cash}}元使用</view>
+            </view>
+          </view>
+          <view class='mayuse_coupon_b'>
+            <view>{{item.coupondesc}}</view>
+            <view>{{item.latest_start_time}}-{{item.latest_closing_time}}</view>
+          </view>
+          <radio color='#c81e27' checked='{{item.is_select == 1}}'  value='{{shopID==""?item.code:item.id}}' class='coupon_radio'></radio>
+        </view>
+      </radio-group>
+      <!-- 不可用优惠券 -->
+      <view class='promotionScroll_view' wx:if='{{subscript == 2}}'>
+        <!-- 店铺券 -->
+        <view wx:for='{{noavailableCoupons}}' wx:key class='failure_coupon' wx:if='{{item.type == 1}}'>
+          <view class='failure_coupon_a'>
+            <view>
+              <view>￥
+                <text>{{item.jian}}</text>
+              </view>
+            </view>
+            <view>
+              <view>减满券</view>
+              <view>满{{item.man}}元使用</view>
+            </view>
+          </view>
+          <view class='failure_coupon_b'>
+            <view>{{item.coupondesc}}</view>
+            <view>{{item.latest_start_time}}-{{item.latest_closing_time}}</view>
+          </view>
+        </view>
+        <view wx:for='{{noavailableCoupons}}' wx:key class='failure_coupon' wx:if='{{item.type == 2}}'>
+          <view class='failure_coupon_a'>
+            <view>￥
+              <text>{{item.cash}}</text>
+            </view>
+            <view>
+              <view>现金券</view>
+              <view>满{{item.cash}}元使用</view>
+            </view>
+          </view>
+          <view class='failure_coupon_b'>
+            <view>{{item.coupondesc}}</view>
+            <view>{{item.latest_start_time}}-{{item.latest_closing_time}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

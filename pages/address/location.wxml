@@ -1,0 +1,62 @@
+<!-- 信息部分开始 -->
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="info">
+    <!-- 姓名部分 -->
+    <view class="item">
+      <text>用户姓名</text>
+      <view class="right">
+        <input type="text" name="name" placeholder="{{name}}" value='{{value_name}}' focus="{{focus}}" />
+      </view>
+    </view>
+    <!-- 电话部分 -->
+    <view class="item">
+      <text>联系电话</text>
+      <view class="right">
+        <input name="tel" type="number" placeholder="{{tel}}" value='{{value_tel}}' focus="{{focus}}" />
+      </view>
+    </view>
+    <!-- 收货地址部分 -->
+    <view class="item">
+      <text>所在区域</text>
+      <view class="right" bindtap='openbox'>
+        <view style='color:#939393;'>{{address}}</view>
+      </view>
+    </view>
+    <!-- <view class="wrapper">
+      <text wx:for='{{provinces}}' data-id='{{item.photoInfo}}'>{{item.name}}</text>
+    </view> -->
+    <!-- 详细地址部分 -->
+    <view class="item">
+      <text>详细地址</text>
+      <view class="right">
+        <input name="door" type="text" placeholder="{{door}}" value='{{value_door}}' focus="{{focus}}" />
+      </view>
+    </view>
+  </view>
+  <!-- 信息部分结束 -->
+  <button class="save" formType="submit">保存</button>
+</form>
+<view class="address_bottom" wx:if='{{boxSwitch}}'>
+  <view class="address_scroll">
+    <view><text></text><text>所在区域</text><text bindtap='closebox'>X</text></view>
+    <view>
+      <text>{{shengName}} {{shiName}} {{xianName}} {{zhenName}}</text>
+    </view>
+    <scroll-view scroll-y class="scoll_view">
+      <view style="display:flex" style='width:100%;'>
+        <view wx:if="{{shengSwitch}}" class="scoll_view_box">
+          <view wx:for='{{shengArr}}'class='scoll_view_a' wx:key bindtap='shengClick' data-id='{{item.id}}' data-name='{{item.name}}' >{{item.name}}</view> 
+        </view>
+        <view wx:if="{{shiSwitch}}" class="scoll_view_box">
+          <view wx:for='{{shiArr}}'class='scoll_view_a'  wx:key bindtap='shiClick' data-id='{{item.id}}' data-name='{{item.name}}' >{{item.name}}</view> 
+        </view>
+        <view wx:if="{{xianSwitch}}" class="scoll_view_box">
+          <view wx:for='{{xianArr}}'class='scoll_view_a'  wx:key bindtap='xianClick' data-id='{{item.id}}' data-name='{{item.name}}' >{{item.name}}</view> 
+        </view>
+        <view wx:if="{{zhenSwitch}}" class="scoll_view_box">
+          <view wx:for='{{zhenArr}}'class='scoll_view_a'  wx:key bindtap='zhenClick' data-id='{{item.id}}' data-name='{{item.name}}' >{{item.name}}</view> 
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

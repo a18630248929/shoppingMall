@@ -1,0 +1,217 @@
+<component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
+
+<view class='kanjia_header flex-row'>
+  <view class="boardcast font-12 flex-row">
+    <image src='/pages/image/laba.png' class='noticeicon  '></image>
+    <view class='noticeswiper'>
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="20000" style='height:100%;'>
+        <block wx:for="{{boradcast}}" wx:key="key">
+          <swiper-item>
+            <view class="swiper_item isRelative">
+              <text>恭喜{{item.nickname}}砍价成功，共砍掉</text>
+              <text class='primary'> {{item.bargain_price}}</text>
+              <text>元</text>
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </swiper-item>
+        </block>
+        <swiper-item wx:if="{{boradcast.length==0}}">
+          <view class="swiper_item ">砍价火热进行中！</view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <view style="display:flex;margin-top:7rpx;">
+    <view class='checkorder primary isRelative' bindtap='gotoMyOrder'>
+      <text>查看我的砍价</text>
+      <form bindsubmit="gotoMyOrder" report-submit="true" class="getFormId">
+        <button formType="submit" hover-class="none" class='invisibleclass'></button>
+      </form>
+    </view>
+    <view>
+      <image src='/pages/image/icon1.png' class='checkicon'></image>
+    </view>
+  </view>
+</view>
+<view class='kanjia_tab flex-row'>
+  <view class='option {{type=="all"?"active":""}} isRelative' bindtap='changeType' data-id="all" data-type="0">
+    全部
+    <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+      <button formType="submit" hover-class="none" class='invisibleclass'></button>
+    </form>
+  </view>
+  <view class='option {{type=="going"?"active":""}} isRelative' style='margin-left:134rpx;' bindtap='changeType' data-id="going" data-type="1">
+    砍购中
+    <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+      <button formType="submit" hover-class="none" class='invisibleclass'></button>
+    </form>
+  </view>
+  <view class='option {{type=="coming"?"active":""}} isRelative' style='margin-left:118rpx;' bindtap='changeType' data-id="coming" data-type="2">
+    即将开始
+    <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+      <button formType="submit" hover-class="none" class='invisibleclass'></button>
+    </form>
+  </view>
+  <view style='margin-left:110rpx;width:50rpx;height:100%;text-align:center;' bindtap='changeDisplayType'>
+    <image class="displayicon" src='{{displaytype=="list"?"/pages/image/sx":"/pages/image/hx"}}.png'></image>
+  </view>
+
+</view>
+<view wx:if="{{!goodsList.length}}">
+  <view class='norecord'>
+    <image src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/norecord.png"></image>
+  </view>
+  <view class='norecordtext'>记录空空......</view>
+</view>
+<view wx:else class='itembody'>
+  <scroll-view scroll-y="true" style='height:100%' bindscrolltolower="scrolltolower" data-id="{{type}}" data-type="{{typeNum}}" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class='itemlist' wx:if="{{displaytype=='list'}}">
+      <block wx:for="{{goodsList}}" wx:key="key">
+        <view class='item flex-row isRelative'>
+          <image src='{{item.cover}}' class='productcover  '></image>
+          <view class='productdetail'>
+            <view class='producttitle'>{{item.title}}</view>
+            <view class=' flex-row'>
+              <view class='primary firstset'>
+                <text class='font-12'>￥</text>
+                <text class='font-13'>{{item.min_priceObj.h}}</text>
+                <text class='font-12'>{{item.min_priceObj.s}}</text>
+              </view>
+              <view wx:if="{{!item.startdiff && item.enddiff && item.countDiff > 0 && item.startBox && item.endBox}}" class='tm flex-row'>
+                <view class='font-11' style='width:100rpx;margin-right:8rpx;height:40rpx;'>距结束</view>
+                <view style='display:flex;'>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.hour}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.minute}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.second}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                </view>
+              </view>
+              <view wx:if="{{item.startdiff > 0 && item.countDiff > 0 && !item.startBox}}" class='tcm flex-row'>
+                <view class='font-11' style='width:100rpx;margin-right:8rpx;'>距开始</view>
+                <view style='display:flex;'>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.hour}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.minute}}" w="" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.second}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class=' flex-row'>
+              <view class='firstset'>
+                <text class='font-11 oldprice'>￥{{item.init_price}}</text>
+              </view>
+              <view class=' flex-row '>
+                <view class='reminder'>
+                  <text class='font-11 '>仅剩{{item.goods_num - item.sales}}件</text>
+                </view>
+                <view>
+                  <view class='progress {{item.enddiff && item.countDiff >0  && item.endBox ?"going" : "coming" }} flex-row'>
+                    <view class='progress-go' style='width:{{(item.goods_num - item.sales)/ item.goods_num *100}}%;'></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <form bindsubmit="gotoDetail" report-submit="true" class="getFormId" data-id="{{item.goods_id}}" data-bargainid="{{item.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </block>
+    </view>
+    <view class='itemdetail' wx:if="{{displaytype=='grid'}}">
+      <block wx:for="{{goodsList}}" wx:key="goods_id">
+        <view class='item isRelative' wx:if="{{(item.enddiff)&&(type=='all'||(type=='going'&&!item.timeDiff)||(type=='coming' && item.timeDiff))}}" bindtap='gotoDetail' data-id="{{item.goods_id}}" data-bargainid="{{item.bargain_id}}">
+          <view>
+            <image src='{{item.cover}}' class='productcover  '></image>
+            <view class='producttitle font-14'>{{item.title}}</view>
+            <view class='productprice flex-row'>
+              <view class='primary firstset'>
+                <text class='font-12'>￥</text>
+                <text class='font-17'>{{item.min_priceObj.h}}</text>
+                <text class='font-12'>{{item.min_priceObj.s}}</text>
+              </view>
+              <view>
+                <text class='font-11 oldprice'>￥{{item.init_price}}</text>
+              </view>
+            </view>
+            <view class='producttimer'>
+              <view wx:if="{{!item.timeDiff && item.enddiff && item.countDiff >0 && item.startBox && item.endBox}}" class='tm flex-row'>
+                <view class='font-11' style='width:100rpx;margin-right:8rpx;'>距结束</view>
+                <view style='display:flex;'>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.hour}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.minute}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.endtime_s.second}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                </view>
+
+              </view>
+
+
+              <view wx:if="{{item.timeDiff && item.countDiff > 0 && item.enddiff && !item.startBox}}" class='tcm flex-row'>
+                <view class='font-11' style='width:100rpx;margin-right:8rpx;'>距开始</view>
+                <view style='display:flex;'>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.hour}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.minute}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                  <view class='font-12' style='margin-left:4rpx;line-height:1;'>:</view>
+                  <view class='v14 font-11' wx:for="{{item.starttime_s.second}}" wx:key="key">
+                    <view class="iv14">{{item}}</view>
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+
+            <view class='productreminder flex-row '>
+              <view class='reminder font-11'>
+                仅剩{{item.goods_num - item.sales}}件
+              </view>
+              <view class='progress {{item.enddiff && item.countDiff > 0 && item.endBox ? "going" : "coming"}} flex-row'>
+                <view class='progress-go' style='width:{{(item.goods_num - item.sales)/item.goods_num*100}}%;'></view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </view>
+
+
+
+
+
+
+
+
+
+
+  </scroll-view>
+</view>

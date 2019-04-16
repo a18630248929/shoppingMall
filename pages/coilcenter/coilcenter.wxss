@@ -1,0 +1,121 @@
+/* pages/coilcenter/coilcenter.wxss */
+
+page {
+  background-color: #f3f0f0;
+}
+
+.coilcenter {
+  width: 100%;
+  padding:0 15rpx 20rpx 15rpx;
+  box-sizing: border-box;
+}
+
+.coilcenter_coupon {
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  background-color: #fff;
+  margin-top: 20rpx;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 10rpx 10rpx 20rpx #999;
+}
+
+.coilcenter_coupon_a {
+  width: 35%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #fba0af;
+}
+
+.coilcenter_coupon_a text {
+  font-size: 63rpx;
+  font-weight: bold;
+}
+
+.coilcenter_coupon_a view:nth-of-type(2) {
+  font-size: 35rpx;
+  margin-top: 20rpx;
+}
+
+.coilcenter_coupon_b {
+  width: 63%;
+  height: 100%;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: inherit;
+  padding-left: 10rpx;
+}
+
+.coilcenter_coupon_b>view:nth-of-type(1) {
+  width: 80%;
+  height: 83rpx;
+  display:flex;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.coilcenter_coupon_b>view:nth-of-type(2) {
+  color: gainsboro;
+}
+
+.coilcenter_lq {
+  position: absolute;
+  right: 12rpx;
+  top: 103rpx;
+  width: 20%;
+  font-size: 28rpx;
+  border: 1rpx solid #fba0af;
+  color: #fba0af;
+  font-weight: bold;
+  border-radius: 30rpx;
+  text-align: center;
+}
+
+.xian>view:nth-of-type(1) {
+  background: rgba(81, 188, 224, 0.7);
+}
+
+.lingqu {
+  position: absolute;
+  right: -64rpx;
+  top: 20rpx;
+  text-align: center;
+  width: 30%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 25rpx;
+  background: #fba0af;
+  transform: rotate(45deg);
+  color: #fff;
+}
+
+.xian .lingqu {
+  background: rgba(81, 188, 224, 0.7);
+}
+.xian .coilcenter_lq{
+  border:1rpx solid rgb(81, 188, 224);
+  color:rgb(81, 188, 224);
+}
+.xian .pt{
+  background:rgb(81, 188, 224);
+}
+.pt{
+  display: inline-block;
+  padding: 5rpx 10rpx;
+  background: #fba0af;
+  color: #fff;
+  border-radius:10rpx;
+  margin-right: 10rpx;
+}

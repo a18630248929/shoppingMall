@@ -1,0 +1,27 @@
+<view class='search'>
+  <icon class="search_tu" type="search" size="14"></icon>
+  <input placeholder-class="search-input" type='text' confirm-type='search' auto-focus bindinput='input1' bindconfirm='confirm1' placeholder="请输入商品名称" value="{{searchinput}}"/>
+</view>
+
+<view class='rmss'>
+  <view class='rmss-1'>热门搜索</view>
+  <view class='search_ys'>
+    <view wx:for="{{searchname}}" bindtap='clicksearch' data-idx="{{index}}"  data-searchname='{{item}}' wx:key="this" >
+      <view class="sswz {{currentTab==index ? 'active' : ''}}">{{item}}</view>
+    </view>
+  </view>
+</view>
+
+<view  class='ssys'>
+  <view class='sort-row-1'>
+    <view class='goods-sort-1' wx:for="{{list}}" wx:key="this" bindtap='details' data-id='{{item.goods_id}}'>
+      <image src="{{item.default_image}}"></image>
+      <text class='sort-wb'>{{item.goods_name}}</text>
+      <view class='sort-m'>
+        <text class='new-price-red'>￥</text>
+        <text class='new-price'>{{item.Price}}</text>
+        <text class='old-price'>￥{{item.scPrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>

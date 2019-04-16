@@ -1,0 +1,22 @@
+<!--pages/classification/classification.wxml-->
+<view class='classify_box'>
+  <!-- 左边栏 -->
+  <scroll-view scroll-y='true' class='classify_left' style='height:{{deviceH}}px'>
+    <view wx:for="{{categoricalData}}" wx:key class='{{subscript == index?"active":""}}' data-index="{{index}}" catchtap='subscript'>
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <!-- 右边栏 -->
+  <scroll-view scroll-y='false' class='classify_right' style='height:{{deviceH}}px'>
+    <!-- <image src='../image/log.png' mode='widthFix'></image> -->
+    <view class='classify_right_text' wx:for="{{categoricalData}}" wx:key wx:if='{{subscript == index}}' >
+      <text style='display:{{item.name=="食品礼盒"?"none":""}}'>{{item.name}}</text>
+      <view class='classify_right_box'>
+        <view wx:for="{{item.list}}" wx:for-item="itemName" wx:key data-arr='{{itemName}}' catchtap='category'>
+          <image src='{{itemName.img}}' mode='widthFix'></image>
+          <view>{{itemName.name}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

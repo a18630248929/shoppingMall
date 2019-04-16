@@ -1,0 +1,43 @@
+<template name="swiper">
+  <!-- 首页轮播 -->
+  <!-- <swiper class='swiper' autoplay="auto" circular="true" duration="1000" indicatorColor="white" indicator-active-color="red" indicatorDots="true" interval="5000">
+    <swiper-item wx:for="{{banner}}" wx:key>
+      <image mode='widthFix' style='width:100%;' src='{{item}}'></image>
+    </swiper-item>
+  </swiper> -->
+  <image class='banner-tu' style='display:{{banner?"":"none"}}' src='{{banner}}'></image>
+</template>
+
+<template name="Navigation">
+  <!-- 中部导航 -->
+  <view class='Navigation'>
+    <view hover-class='none' class='Navigation_couter' wx:for="{{jdnavigation}}" data-cat_id='{{item.cat_id}}' data-index='{{item.index}}' wx:key="this" bindtap='centralnavigation'>
+      <image mode='aspectFill' src='{{item.image}}'></image>
+      <view>{{item.title}}</view>
+    </view>
+  </view>
+</template>
+<template name="list">
+
+  <!-- 商品列表 -->
+  <view class='dis_row-11'>
+    <view class='sort-line' wx:for="{{sort}}" wx:key="this">
+      <view class='{{curren==item.index?"yscolor":""}}' data-index='{{item.index}}' data-paixu="{{paixu1}}" catchtap='sort'>{{item.sort_name}}</view>
+    </view>
+  </view>
+  <view class='sort-row'>
+    <view class='goods-sort' wx:for="{{lists}}" wx:key="this" bindtap='details' data-id='{{item.goods_id}}'>
+      <image src="{{item.default_image}}"></image>
+      <text class='sort-wb'>{{sid==551?item.goods_name:item.goods_title}}</text>
+      <view class='sort-m'>
+        <text class='new-price-red'>￥</text>
+        <text class='new-price'>{{item.Price}}</text>
+        <text class='old-price'>￥{{item.scPrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="wui-loadmore wui-loadmore-nomore">
+    <view class="wui-loadmore-tips">我是有底线的</view>
+    <view class="wui-loadmore-line"></view>
+  </view>
+</template>

@@ -1,0 +1,21 @@
+<import src="../first-template/first-template.wxml" />
+
+<!-- 回到顶部 -->
+<view class='goTop' style='display:{{yin?"flex":"none"}}'>
+  <image class='goTop-tu' src='../image/hddb.png' bindtap="goTop"></image>
+</view>
+
+
+<scroll-view scroll-y='true'>
+  <template is="swiper" data="{{banner}}" />
+  <!-- 中部导航 -->
+  <view class='Navigation-1' style='display:{{hide?"flex":"none"}}; margin-top:0'>
+    <view hover-class='none' class='Navigation_couter' wx:for="{{jdnavigation}}" data-cat_id='{{item.cat_id}}' data-index='{{item.index}}' wx:key="this" bindtap='centralnavigation'>
+      <image mode='aspectFill' src='{{item.image}}'></image>
+      <view>{{item.title}}</view>
+    </view>
+  </view>
+  <!-- <template is="Navigation" data="{{list:list}}" /> -->
+
+  <template is="list" data="{{lists:lists,sort:sort,curren:curren ,sid:sid}}" />
+</scroll-view>

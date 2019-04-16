@@ -1,0 +1,31 @@
+/* pages/refund/refund.wxss */
+.refund{
+  width: 100%;
+}
+.refund view{
+  font-size: 27rpx;
+  padding: 25rpx 20rpx;
+  color: #999;
+}
+.section{
+  background: #fff;
+  height:200rpx;
+}
+.section textarea{
+  width: 100%;
+}
+.picker{
+  width: 100%;
+  background: #fff;
+  color:#000 !important;
+}
+.submission{
+  width: 90%;
+  background: #c81e27;
+  color: #fff;
+  margin-top: 30rpx;
+}
+button[disabled] {
+  background: #999 !important;
+  color: #fff !important;
+}

@@ -1,0 +1,16 @@
+page {
+  background-color: #f3f3f3;
+  background-size: 100%;
+  margin-left: auto;
+}
+.block-name{
+  width: 100%;
+  background: #fff;
+  font-size: 30rpx;
+}
+.usercenter-block{
+  margin-top:0 !important; 
+}
+.ele-container{
+ margin-top:15rpx;
+}

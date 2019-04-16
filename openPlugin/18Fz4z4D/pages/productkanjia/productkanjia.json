@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "component-share": "/components/pageQRCode/pageQRCode",
+    "component-getUserInfo": "/components/getUserInfo/getUserInfo"
+  }
+}

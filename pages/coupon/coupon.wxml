@@ -1,0 +1,118 @@
+<view class="container">
+  <view class='{{currtab == 0 ? "active" : ""}}' wx:key bindtap='clickBar' data-index='{{0}}'>可使用( {{mayuse.length}} )</view>
+  <view class='{{currtab == 1 ? "active" : ""}}' wx:key bindtap='clickBar' data-index='{{1}}'>已使用( {{alreadyused.length}} )</view>
+  <view class='{{currtab == 2 ? "active" : ""}}' wx:key bindtap='clickBar' data-index='{{2}}'>已失效( {{failure.length}} )</view>
+</view>
+<swiper current="{{currtab}}" class="swiper-box" duration="300" style='height:{{deviceH}}px' bindchange="tabChange">
+  <!-- 可使用 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view wx:for='{{mayuse}}' wx:key class='mayuse_coupon' wx:if='{{item.type == 1}}' data-data='{{item}}' bindtap='couponDetails'>
+        <view class='mayuse_coupon_a'>
+          <view>
+            <view>￥<text>{{item.jian}}</text></view> 
+          </view>
+          <view>
+            <view>减满券</view>
+            <view>满{{item.man}}元使用</view>
+          </view>
+        </view>
+        <view class='mayuse_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='mayuse_coupon_use'>立即使用</view>
+      </view>
+      <view wx:for='{{mayuse}}' wx:key class='mayuse_coupon {{item.type == 2? "xian":""}}' wx:if='{{item.type == 2}}'>
+        <view  class='mayuse_coupon_a'>
+          <view>￥
+            <text>{{item.cash}}</text>
+          </view>
+          <view>
+            <view>现金券</view>
+            <view>满{{item.cash}}元使用</view>
+          </view>
+        </view>
+        <view class='mayuse_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='mayuse_coupon_use'>立即使用</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 已使用 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view wx:for='{{alreadyused}}' wx:key class='failure_coupon' wx:if='{{item.type == 1}}'>
+        <view class='failure_coupon_a'>
+          <view>
+            <view>￥<text>{{item.jian}}</text></view> 
+          </view>
+          <view>
+            <view>减满券</view>
+            <view>满{{item.man}}元使用</view>
+          </view>
+        </view>
+        <view class='failure_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='shixiao'>已使用</view>
+      </view>
+      <view wx:for='{{alreadyused}}' wx:key class='failure_coupon' wx:if='{{item.type == 2}}'>
+        <view class='failure_coupon_a'>
+          <view>￥
+            <text>{{item.cash}}</text>
+          </view>
+          <view>
+            <view>现金券</view>
+            <view>满{{item.cash}}元使用</view>
+          </view>
+        </view>
+        <view class='failure_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='shixiao'>已使用</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 已失效 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view wx:for='{{failure}}' wx:key class='failure_coupon' wx:if='{{item.type == 1}}'>
+        <view class='failure_coupon_a'>
+          <view>
+            <view>￥<text>{{item.jian}}</text></view> 
+          </view>
+          <view>
+            <view>减满券</view>
+            <view>满{{item.man}}元使用</view>
+          </view>
+        </view>
+        <view class='failure_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='shixiao'>已失效</view>
+      </view>
+      <view wx:for='{{failure}}' wx:key class='failure_coupon' wx:if='{{item.type == 2}}'>
+        <view class='failure_coupon_a'>
+          <view>￥
+            <text>{{item.cash}}</text>
+          </view>
+          <view>
+            <view>现金券</view>
+            <view>满{{item.cash}}元使用</view>
+          </view>
+        </view>
+        <view class='failure_coupon_b'>
+          <view>{{item.desc}}</view>
+          <view>{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+        <view class='shixiao'>已失效</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

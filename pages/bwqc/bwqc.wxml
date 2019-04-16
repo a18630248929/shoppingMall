@@ -1,0 +1,13 @@
+<!--pages/bwqc/bwqc.wxml-->
+<image class='bwqc' bindtap='bwqc' src='http://p3.baiwangkeji.com/content0gow_5c9aed3ca0d3c?imageMogr2/thumbnail/640x/strip/quality/80/format/jpeg'></image>
+<view catchtap='consultation'>
+  <view class='seedetails location1' bindtap='seedetails1'>立即咨询
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+  </view>
+  <view class='seedetails location2' bindtap='seedetails2'>立即咨询
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+  </view>
+  <view class='seedetails location3' bindtap='seedetails3'>立即咨询
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+  </view>
+</view>

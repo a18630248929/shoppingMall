@@ -1,0 +1,54 @@
+/* pages/payment/payment.wxss */
+page{
+  background: #fff;
+}
+.paymentbox {
+  width: 100%;
+}
+.paymentbox>view:nth-of-type(1), .paymentbox>view:nth-of-type(2) {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid gainsboro;
+  color: gray;
+  font-size: 35rpx;
+}
+
+.confirmPayment {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom:300rpx; 
+}
+
+.confirmPayment view {
+  text-align: center;
+  color: #fff;
+  width: 85%;
+  padding: 20rpx;
+  background-color: #db3e53;
+}
+.radio-group{
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 3px solid gainsboro;
+}
+.radio-group>view{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+  padding: 20rpx;
+  border-bottom:1px solid gainsboro;
+  box-sizing:border-box; 
+}
+.radio-group>view radio{transform:scale(0.8)} /*radio单选按钮的样式*/
+.wx-switch-input{width:42px !important;height:20px !important;}  /*switch开关的样式*/
+.wx-switch-input::before{width:41px !important;height: 20px !important;}
+.wx-switch-input::after{width: 18px !important;height: 18px !important;}

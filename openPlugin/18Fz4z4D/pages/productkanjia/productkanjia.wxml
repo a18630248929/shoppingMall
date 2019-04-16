@@ -1,0 +1,697 @@
+<component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
+<component-share pageQRCodeData="{{pageQRCodeData}}"></component-share>
+<import src="../../../../components/wxParse/wxParse.wxml" />
+<view style="width:100vw;overflow-x:hidden;height:{{inshare? '100vh' : 'auto'}}">
+  <view wx:if="{{goodsInfo.id>0}}" class="bgpage {{(!goodsInfo.startdiff&&goodsInfo.enddiff&&goodsInfo.status!='1' && is_delete !='1')?'':'endkanstatus'}}">
+    <view class="notice flex-row" hidden="{{slidMask}}">
+      <view class='boardcast font-12 flex-row'>
+        <image src='/pages/image/laba.png' class='noticeicon  '></image>
+        <view class='noticeswiper'>
+          <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="20000" style='height:100%;'>
+            <block wx:for="{{boradcast}}" wx:key="key">
+              <swiper-item>
+                <view class="swiper_item ">
+                  <text>恭喜{{item.nickname}}砍价成功，共砍掉</text>
+                  <text class='primary'>{{item.bargain_price}}</text>
+                  <text>元</text>
+                </view>
+              </swiper-item>
+            </block>
+            <swiper-item wx:if="{{boradcast.length==0}}">
+              <view class="swiper_item ">砍价火热进行中！</view>
+            </swiper-item>
+          </swiper>
+        </view>
+      </view>
+      <!-- <view class='kefu isRelative'>
+        <contact-button type="default-light" size="20" session-from="kanjia" style='position:absolute;opacity:0;'></contact-button>
+        <icon class="ico-moon icon-service2"></icon>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view class='shop isRelative'>
+        <icon class="ico-moon icon-franchisee-manager"></icon>
+        <form bindsubmit="goToHomepage" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view> -->
+    </view>
+    <view class="notice flex-row" hidden="{{!slidMask}}" style="background:#fff;position:fixed;background:#fff;top:0rpx;z-index:1;">
+      <view class='boardcast font-12 flex-row'>
+        <image src='/pages/image/laba.png' class='noticeicon  '></image>
+        <view class='noticeswiper'>
+          <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="20000" style='height:100%;'>
+            <block wx:for="{{boradcast}}" wx:key="key">
+              <swiper-item>
+                <view class="swiper_item isRelative">
+                  <text>恭喜{{item.nickname}}砍价成功，共砍掉</text>
+                  <text class='primary'>{{item.bargain_price}}</text>
+                  <text>元</text>
+                  <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                    <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                  </form>
+                </view>
+              </swiper-item>
+            </block>
+            <swiper-item wx:if="{{boradcast.length==0}}">
+              <view class="swiper_item ">砍价火热进行中！</view>
+            </swiper-item>
+          </swiper>
+        </view>
+      </view>
+      <!-- <view class='kefu' style="background:none">
+        <contact-button type="default-light" size="20" session-from="kanjia" style='position:absolute;opacity:0;'></contact-button>
+        <icon class="ico-moon icon-service2 isRelative" style="color:#333;"></icon>
+        <view class="lineNum">
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </view>
+      <view class='shop isRelative' style="background:none">
+        <icon class="ico-moon icon-franchisee-manager" style="color:#333"></icon>
+        <form bindsubmit="goToHomepage" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view> -->
+    </view>
+    <image class='banner' src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/banner.png'></image>
+    <view>
+      <view class='memberinfo flex-row'>
+        <image src='{{userinfo.cover_thumb}}' class='memberphoto'></image>
+        <view class='membertext'>
+          <text class='membername'>{{userinfo.nickname}}</text>
+          <text class='memberkaning'>正在参加砍价活动</text>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class='productinfo'>
+        <view class='t1 flex-row'>
+          <image src='{{goodsInfo.cover}}' class='productphoto' catchtap="clickPlusImages"></image>
+          <view class='productprice'>
+            <view class='producttitle'>
+              <text>{{goodsInfo.title}}</text>
+            </view>
+            <view class='productpriceinfo flex-row'>
+              <view class='lowkanto'>
+                <view>最低</view>
+                <view>砍至</view>
+              </view>
+              <view class='price' style='margin-top:0;line-height:inherit;'>
+                <text class='font-15'>￥</text>
+                <text class='font-25'>{{goodsInfo.min_priceObj.h}}.</text>
+                <text class='font-18'>{{goodsInfo.min_priceObj.s}}</text>
+              </view>
+              <view class='oldpriceinfo'>
+                <view class='oldprice'>￥{{goodsInfo.init_price}}</view>
+                <view class='reminder'>仅剩{{goodsInfo.countDiff}}件</view>
+              </view>
+              <view style='overflow: visible;flex:1;text-align:right;' wx:if="{{(!goodsInfo.startdiff&&goodsInfo.enddiff&&goodsInfo.status!='1' && is_delete !='1')==false || is_bargain == 5 || is_bargain == 6}}">
+                <image src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/ending.png" style='width:96rpx;height:96rpx;margin-top:-30rpx;margin-right:'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='t2 flex-row'>
+          <image src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/timereminder1.png' class='timereminder' wx:if="{{!goodsInfo.startdiff&&goodsInfo.enddiff&&goodsInfo.status!='1' && is_delete !='1'}}"></image>
+          <image wx:else class='timereminder' src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/timereminder2.png'></image>
+          <view class='font-11 txtremindertime'>活动时间仅剩 ：</view>
+          <view class='tm flex-row'>
+            <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.hour}}" wx:key="key">
+              <view class="iv14">{{item}}</view>
+            </view>
+            <view class='font-11 marker'>时</view>
+            <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.minute}}" wx:key="key">
+              <view class="iv14">{{item}}</view>
+            </view>
+            <view class='font-11 marker'>分</view>
+            <view class='v14 font-11' wx:for="{{goodsInfo.endtime_s.second}}" wx:key="key">
+              <view class="iv14">{{item}}</view>
+            </view>
+            <view class='font-11 marker'>秒</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="process-wrap">
+      <view class='flex-row' style='overflow:visible'>
+        <view class='flex-row' style='margin-left:{{(goodsInfo.process * 522)}}rpx;overflow:visible'>
+          <view class='nowpricetips flex-row' style='margin-left: calc(20% * -1);'>
+            <image src='{{userinfo.cover_thumb}}' class='memberphoto2'></image>
+            <view class='nowprice'>
+              <text class='font-10'>￥</text>
+              <text class='font-15'>{{goodsInfo.now_priceObj.h}}.</text>
+              <text class='font-12'>{{goodsInfo.now_priceObj.s}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='process'>
+        <view class='bar' style='width:{{goodsInfo.process*555}}rpx'></view>
+        <view class='ball' style='margin-left:{{goodsInfo.process*522-5}}rpx'>
+          <view class='spot'></view>
+        </view>
+      </view>
+      <view class='flex-row process-price'>
+        <view class='font-12'>￥{{goodsInfo.init_price}}</view>
+        <view>
+          <text class='font-12'>￥{{goodsInfo.min_priceObj.h}}.</text>
+          <text class='font-12'>{{goodsInfo.min_priceObj.s}}</text>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{(goodsInfo.enddiff&&goodsInfo.status!='1' && is_delete != '1')}}">
+      <block wx:if="{{is_bargain == 3}}">
+        <view class='flex-row' style='margin-top:42rpx;'>
+          <view class='opsbtn goorder hangKan' style="margin:{{goodsInfo.now_price != goodsInfo. min_price ? '0 0 0 134rpx' :'0 auto'}}">
+            <view style='height:84rpx;line-height:84rpx;' bindtap='gotoTryPay' class="isRelative">
+              立即下单
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+          <view class='opsbtn kanhelp' wx:if="{{goodsInfo.now_price != goodsInfo. min_price}}">
+            <view style='height:84rpx;line-height:84rpx;' catchtap='goInshare' class="isRelative">
+              找人帮砍
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </view>
+        <view class='flex-row' wx:if="{{goodsInfo.extrakan!='N'}}">
+          <view class='newusertips' wx:if="{{is_message=='1'}}" style='margin-top:30rpx;'>
+            <view class='dot'></view>
+            新用户可砍下更多金额哦
+            <view class='dot'></view>
+          </view>
+          <view class='newusertips' wx:if="{{is_message=='2'}}" style="width:450rpx;margin-top:30rpx;">
+            <view class='dot'></view>
+            好友绑定手机，砍价金额可能翻倍哦
+            <view class='dot'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{is_bargain != 2}}">
+          <block wx:if="{{is_bargain == 4 || is_bargain == 5 || is_bargain == 6}}">
+            <block wx:if="{{is_bargain == 6 || goodsInfo.is_group_buy_goods == 1 || goodsInfo.is_seckill == 1}}">
+              <view class='flex-row' style='margin-top:42rpx;'>
+                <view class='opsbtn kanit' style='width:284rpx;margin-left:234rpx;'>
+                  <view style='height:84rpx;line-height:84rpx;' bindtap='gotoMyKan' class="isRelative">
+                    再次砍价
+                    <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                      <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                    </form>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='flex-row' style='margin-top:42rpx;'>
+                <view class='opsbtn kanit' style='width:284rpx;margin-left:234rpx;'>
+                  <view style='height:84rpx;line-height:84rpx;' bindtap='gotoMyKan' class="isRelative">
+                    发起我的砍价
+                    <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                      <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                    </form>
+                  </view>
+                </view>
+              </view>
+              <view class='flex-row' style='margin-top:30rpx;' wx:if="{{is_bargain == 4 || is_bargain == 5}}">
+                <view class='newusertips'>
+                  <view class='dot'></view>
+                  来晚了，好友已经砍完价了
+                  <view class='dot'></view>
+                </view>
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            <view class='flex-row' style='margin-top:42rpx;'>
+              <view class='opsbtn goMyKan'>
+                <view style='height:84rpx;line-height:84rpx;' bindtap='gotoMyKan' class="isRelative">
+                  发起我的砍价
+                  <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                    <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                  </form>
+                </view>
+              </view>
+              <view class='opsbtn findhelp'>
+                <view style='height:84rpx;line-height:84rpx;' bindtap='goInshare' class="isRelative">
+                  找人帮TA砍
+                  <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                    <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                  </form>
+                </view>
+              </view>
+            </view>
+            <view class='flex-row' style='margin-top:30rpx;' wx:if="{{goodsInfo.extrakan!='N'}}">
+              <view class='newusertips' wx:if="{{is_message=='1'}}">
+                <view class='dot'></view>
+                新用户可砍下更多金额哦
+                <view class='dot'></view>
+              </view>
+              <view class='newusertips' wx:if="{{is_message=='2'}}" style="width:450rpx;">
+                <view class='dot'></view>
+                好友绑定手机，砍价金额可能翻倍哦
+                <view class='dot'></view>
+              </view>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class='flex-r/ow' style='margin-top:42rpx;'>
+            <view class='opsbtn kanit' style='line-height:3;'>
+              <view style='margin-top:24rpx;' bindtap='gokan' class="isRelative">
+                帮TA砍价
+                <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-type='goKan'>
+                  <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                </form>
+              </view>
+            </view>
+          </view>
+          <view class='flex-row' style='margin-top:30rpx;' wx:if="{{goodsInfo.extrakan!='N'}}">
+            <view class='newusertips' wx:if="{{is_message=='1'}}">
+              <view class='dot'></view>
+              新用户可砍下更多金额哦
+              <view class='dot'></view>
+            </view>
+            <view class='newusertips' wx:if="{{is_message=='2'}}" style="width:450rpx;">
+              <view class='dot'></view>
+              好友绑定手机，砍价金额可能翻倍哦
+              <view class='dot'></view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='flex-row hangkan' style='margin-top:42rpx;'>
+        <view class='opsbtn endactivity'>
+          <view style='height:84rpx;line-height:84rpx;'>砍价活动已结束</view>
+        </view>
+      </view>
+      <view class='flex-row hangkan' style='margin-top:30rpx;' wx:if="{{(!timeDiff &&  (is_bargain == 2 || is_bargain == 1)) || is_delete == 1 || goodsInfo.status == 1}}">
+        <view class='newusertips'>
+          <view class='dot'></view>
+          来晚了，活动已经结束了
+          <view class='dot'></view>
+        </view>
+      </view>
+    </block>
+    <view class="goods-detail-section activity-heat">
+      <view class="activity-flow">
+        <view class="flow-section">
+          <view>{{activityData.visit_num || 0}}</view>
+          <view>查看</view>
+        </view>
+        <view class="flow-section">
+          <view>{{activityData.participation_num || 0}}</view>
+          <view>参与</view>
+        </view>
+        <view class="flow-section">
+          <view>{{activityData.help_bargain_num || 0}}</view>
+          <view>帮砍</view>
+        </view>
+      </view>
+      <view class="activity-member" wx:if="{{activityData.participation_num}}">
+        <view class="member-section">
+          <view class="member-image" wx:for="{{activityData.help_bargain_cover}}" wx:key="">
+            <image src="{{item.cover}}"></image>
+          </view>
+          <view class="member-image" wx:if="{{activityData.participation_num > 8}}">
+            <icon class="ico-moon icon-more"></icon>
+          </view>
+        </view>
+        <view class="member-section">{{activityData.participation_num || 0 }}人正在参加</view>
+      </view>
+    </view>
+    <view class='flex-row' style='margin-top:72rpx;'>
+      <view class='line' style='margin-left:50rpx;'></view>
+      <image src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/kanjiabang.png" class='kanjiabang'></image>
+      <view class='line'></view>
+    </view>
+    <view class='flex-row' style='margin-top:36rpx;'>
+      <view class='bangtitle font-14 isRelative' style='margin-left:164rpx' bindtap='changebangtype' data-id="1" data-type="rank">
+        给力好友
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view class='bangtitle font-14 isRelative' style='margin-left:186rpx' bindtap='changebangtype' data-id="2" data-type="time">
+        砍价记录
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+    </view>
+    <view style='margin-top:20rpx;margin-left:24rpx;width:702rpx;height:16rpx;background-image:url("http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/bg-{{bangtype=="rank"?"left":"right"}}.png");background-size:100% 100%;'></view>
+    <view class='boxkuang'>
+      <view class='flex-row' style='padding-top:48rpx;margin-left:24rpx;margin-right:30rpx;border-bottom:2rpx solid rgba(255,255,255,0.2);padding-bottom:18rpx;font-size:26rpx;'>
+        <image src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/kan.png" style='width:28rpx;height:28rpx;'></image>
+        <view wx:if="{{is_you == 2}}" class='font-12' style='color:white;margin-left:28rpx;'>
+          <block wx:if="{{kanfriends.length>0}}">已有{{kanFriendsNum}}位好友参与砍价</block>
+          <block wx:else>暂无砍价记录</block>
+        </view>
+        <view wx:else class='font-12' style='color:white;margin-left:28rpx;'>
+          <block wx:if="{{kanfriends.length>0}}">已有{{kanFriendsNum}}位好友帮您砍价</block>
+          <block wx:else>暂无砍价记录</block>
+        </view>
+      </view>
+      <view class='bangbox' wx:if="{{bangtype=='rank'}}" style=''>
+        <block wx:for="{{kanfriends}}" wx:key="key">
+          <view class="flex-row bangfriend">
+            <view wx:if="{{item.seq<=3}}">
+              <image class='bangpai' wx:if="{{item.seq==1}}" src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/g1.png'></image>
+              <image class='bangpai' wx:if="{{item.seq==2}}" src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/g2.png'></image>
+              <image class='bangpai' wx:if="{{item.seq==3}}" src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/g3.png'></image>
+            </view>
+            <view wx:if="{{item.seq>3}}" class='bangpai' style="margin-top:24rpx;">
+              {{item.seq}}
+            </view>
+            <view>
+              <image src='{{item.cover_thumb}}' class='pmemberphoto'></image>
+            </view>
+            <view class='font-13 pmembername'>{{item.nickname}}</view>
+            <view class='font-15 memberkan' style='flex:1;text-align:right;'>
+              -￥{{item.bargain_price}}
+            </view>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{bangtype=='rank'&&isShowMore}}" bindtap='rankcheckmore' style="border-top:2rpx solid rgba(255,255,255,0.5);margin-left:24rpx;margin-right:24rpx;">
+        <view class='checkmorebtn'>
+          <view style='margin-top:14rpx;height:64rpx;line-height:64rpx;' class="isRelative">
+            查看更多
+            <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+              <button formType="submit" hover-class="none" class='invisibleclass'></button>
+            </form>
+          </view>
+        </view>
+      </view>
+      <view class='bangbox' wx:if="{{bangtype=='time'}}" style=''>
+        <block wx:for="{{kanfriends}}" wx:key="key">
+          <view class="flex-row bangfriend">
+            <view>
+              <image src='{{item.cover_thumb}}' class='pmemberphoto'></image>
+            </view>
+            <view class='font-13 pmembername'>{{item.nickname}}</view>
+            <view class='font-15 memberkan' style='flex:1;text-align:right;'>
+              -￥{{item.bargain_price}}
+            </view>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{bangtype=='time'&&isShowMore}}" bindtap='rankcheckmore' style="border-top:2rpx solid rgba(255,255,255,0.5);margin-left:24rpx;margin-right:24rpx;">
+        <view class='checkmorebtn'>
+          <view style='margin-top:14rpx;height:64rpx;line-height:64rpx;' class="isRelative">
+            查看更多
+            <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+              <button formType="submit" hover-class="none" class='invisibleclass'></button>
+            </form>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ commentExample }}" class="productcommentWrap" style="padding:20rpx 20rpx 10rpx;">
+      <view class="productcomment">
+        <view class="commenttitle font-14 isRelative" bindtap='changeComment'>
+          <text>商品评价</text>
+          <image class='rightgo2' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/detaildown.png" style='transform:rotateX({{hideComment? 0 :180}}deg)'></image>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+        <view class="block-item" hidden="{{hideComment}}">
+          <view>
+            <view class="comment-item">
+              <view>
+                <image class="comment-user-photo" src="{{ commentExample.buyer_headimgurl || defaultPhoto }}"></image>
+                <text class="commentPersonName">{{ commentExample.buyer_nickname }}</text>
+              </view>
+              <view class="comment-date">{{ commentExample.add_time }}</view>
+              <view class="comment-content">{{ commentExample.assess_info.content }}</view>
+              <view wx:if="{{ commentExample.assess_info.has_img }}" class="comPage-comment-pics">
+                <image wx:for="{{ commentExample.assess_info.img_arr }}" wx:for-item="imgSrc" src="{{ imgSrc }}" wx:key="key" data-src="{{ imgSrc }}" data-srcarr="{{ commentExample.assess_info.img_arr }}" catchtap="clickPlusImages"></image>
+              </view>
+            </view>
+            <view style="text-align:center;" class="isRelative">
+              <button class="btn lookAllComments isRelative">查看全部评价</button>
+              <form bindsubmit="goToCommentPage" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="productdetailWrap" style="padding:10rpx 20rpx 20rpx;">
+      <view class='productdetail'>
+        <view class='detailtitle font-14 isRelative' bindtap='changeDetail'>
+          <text>商品详情</text>
+          <image class='rightgo2' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/detaildown.png" style='transform:rotateX({{hideDetail? 0 :180}}deg)'></image>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+        <view class='detailcontent descriptionnodetail' hidden='{{hideDetail}}'>
+          <block wx:if="{{goodsInfo.description==''}}">
+            <view class='font-14'>暂无商品详情</view>
+          </block>
+          <block wx:else>
+            <template is="wxParse" data="{{ wxParseData: wxParseDescription.nodes }}" />
+          </block>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{!goodsInfo.startdiff&&goodsInfo.enddiff&&goodsInfo.status!='1' && is_delete != '1'}}">
+      <block wx:if="{{is_bargain == 3}}">
+        <view class='nowbuy font-14 flex-row' wx:if="{{(!goodsInfo.startdiff&&goodsInfo.enddiff && goodsInfo.status!='1' && is_delete !='1')}}">
+          <view wx:if="{{showBottomKan && is_bargain != 6}}" style="height:110rpx;width:100%;"></view>
+          <view wx:if="{{showBottomKan && is_bargain != 6}}" style="position:fixed;bottom:0;left:0;width:100%;text-align:center;height:105rpx;font-size:30rpx;display:flex;">
+            <view style='background:#FDA14C;color:#fff;flex-basis:{{goodsInfo.now_price != goodsInfo. min_price ? "420rpx" : "100%"}};height:105rpx;line-height:105rpx;' bindtap='gotoTryPay' class="isRelative">
+              现价
+              <text class='font-9'>￥</text>
+              <text class='font-15'>{{ goodsInfo.now_priceObj.h }}.</text>
+              <text class='font-12'>{{ goodsInfo.now_priceObj.s }}</text>
+              立即下单
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+            <view wx:if="{{goodsInfo.now_price != goodsInfo. min_price }}" style='background:#ff6633;color:#fff;flex-basis:330rpx;height:105rpx;line-height:105rpx;' bindtap='goInshare' class="isRelative">
+              找人帮砍
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId ">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </view>
+        <view class='nowbuy font-14 ' wx:else style='width:100%;text-align:center;height:105rpx;'>
+          <view style="height:110rpx;width:100%;"></view>
+          <view data-id="{{goodsInfo.id}}" data-bargainid="{{goodsInfo.bargainid}}" style='background: #c81e27;color:#fff;width:100%;positionfixed;bottom:0;left:0;height:105rpx;line-height:105rpx;' bindtap='goGoodsDetail' class="isRelative">
+            原价购买
+            <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+              <button formType="submit" hover-class="none" class='invisibleclass'></button>
+            </form>
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='nowbuy font-14 ' style='text-align:center;'>
+        <view style="height:110rpx;width:100%;"></view>
+        <view data-id="{{goodsInfo.id}}" data-bargainid="{{goodsInfo.bargainid}}" style='background: #c81e27;color:#fff;width:100%;position:fixed;bottom:0;left:0;height:105rpx;line-height:105rpx;' bindtap='goGoodsDetail' class="isRelative">
+          原价购买
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="mask-share" style='position:fixed;left:0;top:0;height:100vh;width:100vw;z-index:5;' catchtap="closeShare" hidden='{{inshare == false}}'>
+    <view style='height:100vh;width:100vw;background:rgba(0,0,0,0.84);position:relative;'>
+      <view class="canvas-wrap" id="canvaswrap">
+        <canvas canvas-id="myCanvas" style='width:580rpx;height:921rpx;'></canvas>
+        <view class='flex-row font-14' style='margin-top:25rpx;'>
+          <view style="flex:1;display:flex;justify-content:center;">
+            <view class='btnShare sharetimes flex-row' bindtap='sharetomemory'>
+              <icon class="ico-moon icon-bargain-save"></icon>
+              <view catchtap="savePic" style="height:54rpx;line-height:54rpx;" class="isRelative">
+                保存图片
+                <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                  <button formType="submit" hover-class="none" class='invisibleclass'></button>
+                </form>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='position:fixed;left:0;top:0;height:100vh;width:100vw;' wx:if="{{inkaning==true}}">
+    <view style='height:100vh;width:100vw;background:rgba(0,0,0,0.80);'></view>
+    <view style='position:absolute;left:214rpx;top:322rpx;'>
+      <image style='height:326rpx;width:362rpx;' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/kan.gif"></image>
+    </view>
+  </view>
+  <view style='position:fixed;left:0;top:0;height:100vh;width:100vw;z-index:2;' wx:if="{{inkan==true}}">
+    <view>
+      <image src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/brilliant.png' wx:if="{{inkan}}" class="abs brilliant" style='opacity: 0.95;' bindtap='closeInKan'></image>
+      <view class="abs" style='position:relative;'>
+        <image src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/success.png' style='width:70vw;height:98.6vw; border-radius:1vh;margin-top:20%;text-align:center;'></image>
+        <view class="abs information" style="top:600rpx">
+          <view class="head">
+            <text class='font-80'>成功帮好友砍掉</text>
+          </view>
+          <view class="body">
+            <text class='font-80' style="font-size:28rpx;">￥</text>
+            <text class='font-80' style="font-size:40rpx;">{{member_kanprice}}</text>
+          </view>
+          <view class="footer" wx:if="{{is_phone >= 0}}">
+            <view wx:if="{{is_phone == '0' && (member_extraprice || new_user_price)}}" style="font-size:26rpx;">
+              <text>+</text>
+              <text class='font-60'>￥</text>
+              <text wx:if="{{member_extraprice}}">{{member_extraprice}}(授权手机额外砍价)</text>
+              <text wx:if="{{new_user_price}}">{{new_user_price}}(新用户额外砍价)</text>
+            </view>
+            <view wx:elif="{{is_phone == '1'}}" style="display:flex;width:40%;margin:0 auto;">
+              <view class="icon-wrap" data-authshow="{{!is_authshow}}" bindtap="authorization">
+                <icon class="ico-moon icon-gou" wx:if="{{!is_authshow}}"></icon>
+              </view>
+              <text>授权手机号帮好友多砍价</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="abs" style="top:6.5%;height:100rpx;margin-left:28%;margin-right:28%;">
+        <view class="gongxi flex-row" style="width:65%;">
+          <view class="leftline"></view>
+          <view class="round"></view>
+          <text class="gxtext">恭喜你</text>
+          <view class="round"></view>
+          <view class="rightline"></view>
+        </view>
+      </view>
+      <view class='abs' style='margin:10% 15% 0 16.5%; width:68.3%; height:100rpx; text-align:right; '>
+        <image src='http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/close-empty.png' style='width:38rpx;height:38rpx;' bindtap='close'></image>
+      </view>
+      <view class='abs' style='margin:16% 0 0 0; width:82.3%; height:38rpx; text-align:right;border-right:2rpx; border-right-color:rgba(255,255,255, 0.6); border-right-style:solid; '></view>
+    </view>
+    <view class="abs" style="position:relative;margin-top:30rpx;">
+      <form bindsubmit="submitInfo" report-submit='true'>
+        <view wx:if="{{!is_authshow && is_phone == '1'}}">
+          <button class="cstbutton isRelative" style="background-color:rgb(243, 149, 73);" bindtap="kanMoreBtn" size="mini" form-type="submit">
+            帮TA多砍
+            <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+              <button formType="submit" hover-class="none" class='invisibleclass'></button>
+            </form>
+          </button>
+        </view>
+        <view class="flex-row" style="margin-left:17.5%; margin-right:17.5%;font-size:28rpx;" wx:else>
+          <button class="cstbutton" bindtap="close" plain="true" size="mini" form-type="submit">
+            我知道了
+          </button>
+          <button class="cstbutton isRelative" style="background-color:rgb(243, 149, 73);" bindtap="gotoMyKan" size="mini" form-type="submit" data-type="helpBargain">
+            发起我的砍价
+          </button>
+        </view>
+      </form>
+    </view>
+  </view>
+  <view id="payDialog" class="page-dialog-wrap" hidden="{{ addtocart!=true}}">
+    <view class="page-bottom-dialog">
+      <view class="page-bottom-content">
+        <view class="pay-close-dialog page-dialog-close" bindtap="closeAddToCart">×</view>
+        <view class="dialog-block-item">
+          <view class="thumb">
+            <view class="thumb-wrap">
+              <image class="pay-goods-cover" src="{{ goodsInfo.cover }}"></image>
+            </view>
+          </view>
+          <view class="pay-goods-baseinfo">
+            <view class="pay-goods-title ellipsis">{{ goodsInfo.title }}</view>
+            <view class="pay-goods-price">
+              <view class="pay-current-price">¥<text style="font-weight:bold; font-size:36rpx;">{{ goodsInfo.now_priceObj.h }}.</text><text style="font-weight:bold; font-size:36rpx;">{{ goodsInfo.now_priceObj.s }}</text>
+              </view>
+            </view>
+            <view wx:if="{{selectModelInfo.models_text}}" class="pay-checked-text clearfix">
+              已选：{{ selectModelInfo.models_text == '""' ? "" : selectModelInfo.models_text }}
+            </view>
+          </view>
+        </view>
+        <view class="dialog-block-item" hidden="{{ !goodsInfo.model_items.length }}">
+          <view class="pay-goods-models">
+            <view wx:for="{{ goodsInfo.model }}" wx:for-item="model" wx:for-index="modelIndex" wx:key="key">
+              <text class="model-title">{{ model.name }}</text>
+              <label class="pills-list">
+                <label wx:for="{{ model.subModelName }}" wx:for-item="name" wx:key="key" data-model-index="{{ modelIndex }}" data-submodel-index="{{ index }}" class="subModel {{ selectModelInfo.models[modelIndex] == model.subModelId[index] ? 'select' : '' }}" data-submodel-id="{{ model.subModelId[index] }}" data-stock="{{selectModelInfo.stock}}" bindtap="selectSubModel">
+                  {{ name }}
+                </label>
+              </label>
+            </view>
+          </view>
+        </view>
+        <view class="dialog-block-item" style="padding-left:10px;padding-right:10px;">
+          <view class="clearfix dialog-bottom-range">
+            <text>数量</text>
+            <text class="buy-limit" wx:if="{{isSeckill}}">
+              (限购{{goodsInfo.seckill_buy_limit}}件)
+            </text>
+            <view class="pull-right" style="overflow:hidden;">
+              <view>
+                <label class="pull-left" style='position:relative;top:-4rpx;text-align:center;width:{{selectModelInfo.stock>0? "auto" : "100%"}};'>
+                  <text>库存</text>
+                  <text class="pay-goods-stock">{{ goodsInfo.countDiff }}</text>
+                </label>
+                <view class="quantity pull-left" wx:if="{{selectModelInfo.stock > 0}}" style="display:flex;">
+                  <label class="minus {{ selectModelInfo.buyCount <= 1 ? 'disabled' : '' }}"></label>
+                  <text>{{ selectModelInfo.buyCount }}</text>
+                  <label class="plus {{ (selectModelInfo.buyCount >= selectModelInfo.stock) || (isSeckill && selectModelInfo.buyCount >= goodsInfo.seckill_buy_limit) ? 'disabled' : '' }}"></label>
+                  <view class="response-area response-area-minus"></view>
+                  <view class="response-area response-area-plus"></view>
+                </view>
+              </view>
+              <view wx:if="{{selectModelInfo.stock <= 0}}" style="font-size:20rpx;color:#666;">
+                (该规格商品库存不足)
+              </view>
+            </view>
+          </view>
+        </view>
+        <view>
+          <view>
+            <view class="btn btn-block btn-black pay-buy-next isRelative" bindtap="buyDirectlyNextStep">
+              确定
+              <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{shareShowModal}}" bindtap="cancelShare"></view>
+  <view class="modalDlg" wx:if="{{shareShowModal}}">
+    <view class="option-select">
+      <button open-type="share" class="isRelative">
+        转发至好友
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </button>
+      <button catchtap="showPageCode" class="isRelative">
+        转发至朋友圈
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </button>
+    </view>
+    <button class="cancel-btn" bindtap="cancelShare">取消</button>
+  </view>
+</view>

@@ -1,0 +1,73 @@
+<import src="/components/wxParse/wxParse.wxml"/>
+<import src="/components/templates/templates.wxml"/>
+<view class='signin' wx:if='{{kai}}'>
+  <image src='http://p3.baiwangkeji.com/content0gow_5c9deb71d8da4?imageMogr2/thumbnail/200x/strip/quality/80/format/png' class='image'></image>
+  <button open-type='share'>确定转发</button>
+</view>
+<view class="kjdhzz" wx:if="{{isnavigation}}" bindtap='isnavigationyc'></view>
+<view class='ksdh_1 "{{isnavigation?"fast":returnss}}"' style='right:{{isnavigation?"0":"-284rpx"}};'>
+  <view class='navigation' bindtap='ksnavigation' wx:if="{{isnavigation}}">
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+    <view class='dis-clu'>
+      <view>收起</view>
+    </view>
+  </view>
+  <view class='navigation' bindtap='ksnavigation' wx:else>
+    <image class='fxzx' src='/pages/image/fxy.png'></image>
+    <view class='dis-clu'>
+      <view>快速</view>
+      <view>导航</view>
+    </view>
+  </view>
+  <view class='navigationstyle'>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/shopping-mall/shopping-mall">
+        <image src="/pages/image/dhhome.png"></image>
+        <view>首页</view>
+      </navigator>
+      <navigator class="kjlbv" url="/order/pages/userCenterComponentPage/userCenterComponentPage">
+        <image src="/pages/image/ptdd.png"></image>
+        <view>拼团订单</view>
+      </navigator>
+    </view>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/personal/personal">
+        <image src="/pages/image/dhmy.png"></image>
+        <view>个人中心</view>
+      </navigator>
+        <navigator class="kjlbv" catchtap='click'>
+          <image src="/pages/image/dhfx.png"></image>
+          <view>分享赚积分</view>
+        </navigator>
+    </view>
+  </view>
+</view>
+<view class="app" hidden="{{page_hidden}}">
+<!-- <web-view wx-if="{{false}}" src="{{false}}"></web-view>
+<component-share pageQRCodeData="{{pageQRCodeData}}"></component-share>
+<component-backhome backToHomePage="{{backToHomePage}}"></component-backhome>
+<component-reward-point rewardPointObj="{{rewardPointObj}}"></component-reward-point>
+<component-shop-vip shopVipModal="{{shopVipModal}}"></component-shop-vip>
+<component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
+<component-filter filterShow="{{filterShow}}" chooseCateId="{{categoryId}}" form="{{classifyGroupForm}}" bind:confirm="filterConfirm"></component-filter>
+<component-formPay id="component-formPay" formInfo="{{formInfo}}"></component-formPay>
+<component-community-publish communityPublish="{{communityPublish}}"></component-community-publish>
+<component-community-publish-type communityPublishType="{{communityPublishType}}"></component-community-publish-type>
+<component-goodsShoppingCart id="component-goodsShoppingCart" bind:afterSelectedGoods="afterSelectGoods"></component-goodsShoppingCart>
+<component-sinkingModal></component-sinkingModal>
+<franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar> -->
+<block wx:if="{{!carousel1.hidden}}">
+  <view class="ele-container">
+    <block wx:if="{{ detail_data && detail_data[carousel1.customFeature.segment] }}">
+      <template is="zcCarousel" data="{{data:carousel1, real_value:detail_data[carousel1.customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:else>
+      <template is="zcCarousel" data="{{data:carousel1}}"></template>
+    </block>
+  </view>
+  <template is="carouselVideoPlay" data="{{data:carousel1}}"></template>
+</block>
+<view class="ele-container" wx:if="{{!group_buy_list2.hidden}}">
+    <template is="zcGroupBuyList" data="{{data:group_buy_list2}}"></template>
+</view>
+</view>

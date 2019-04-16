@@ -1,0 +1,358 @@
+<view style='position:fixed;top:0;left:0;index:1; width:100%;height:185rpx;background:#fff;'>
+  <view class='white l1'>
+    <view class='flex-row'>
+      <view class='flex-1 text-right l1title {{type=="cut"?"active":""}} isRelative' catchtap='changeType' id="cut" style='padding-right:40rpx'>
+        <text>我的砍价</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view class='flex-1 l1title {{type=="order"?"active":""}} isRelative' catchtap='changeType' id="order" style='padding-left:40rpx'>
+        <text>我的订单</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+    </view>
+  </view>
+  <view class='white light l2 lt2' wx:if="{{type=='cut'}}" style='border-top:10rpx solid #eee;padding-left:171rpx;padding-top:20rpx;padding-bottom:18rpx;font-size:28rpx;'>
+    <view class='flex-row font-95 text-center'>
+      <view catchtap='changeCutType' id="P" data-type="1" class="isRelative">
+        <text class='{{cuttype=="P"?"active":""}}'>进行中</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeCutType' id="F" data-type="2" style='margin-left:71rpx;' class="isRelative">
+        <text class='{{cuttype=="F"?"active":""}}'>已结束</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeCutType' id="H" data-type="3" style='margin-left:57rpx;' class="isRelative">
+        <text class='{{cuttype=="H"?"active":""}}'>帮好友砍</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+    </view>
+  </view>
+  <view class='white light l2 lt2' wx:if="{{type=='order'}}" style='border-top:10rpx solid #eee;margin-top:4rpx;padding-left:27rpx;padding-top:18rpx;padding-bottom:18rpx;font-size:28rpx;'>
+    <view class='flex-row font-95 text-center'>
+      <view catchtap='changeOrderType' id="all" class="isRelative">
+        <text class='{{ordertype=="all"?"active":""}}'>全部</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeOrderType' id="0" style='margin-left:79rpx;' data-type='0' class="isRelative">
+        <text class='{{ordertype=="0"?"active":""}}'>待付款</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeOrderType' id="1" style='margin-left:79rpx;' data-type='1' class="isRelative">
+        <text class='{{ordertype=="1"?"active":""}}'>待发货</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeOrderType' id="2" style='margin-left:66rpx;' data-type='2' class="isRelative">
+        <text class='{{ordertype=="2"?"active":""}}'>待收货</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+      <view catchtap='changeOrderType' id="3" style='margin-left:78rpx;' data-type='3' class="isRelative">
+        <text class='{{ordertype=="3"?"active":""}}'>待评价</text>
+        <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+          <button formType="submit" hover-class="none" class='invisibleclass'></button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:187rpx;'></view>
+<view style="height:calc(100vh - 175rpx);">
+  <scroll-view wx:if="{{type=='cut'}}" style='height:100%' lower-threshold="10" scroll-y="true" bindscrolltolower="scrolltolower" id="{{cuttype}}" data-type="{{kan_type_num}}" data-maintype="kan" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view style='font-size:24rpx;' wx:if="{{type=='cut'&&cuttype=='P'}}">
+      <block wx:if="{{items_kanjia.length>0 && kanjia_status}}">
+        <block wx:for="{{items_kanjia}}" wx:key="key">
+          <view class='item-block white isRelative' id='{{item.id}}' style='margin-bottom:9rpx'>
+            <view class='flex-row  '>
+              <text class="cash-delivery" wx:if="{{item.is_pay_on_delivery == 1}}">货到付款</text>
+              <view style='color:#999999;'>{{item.bargain_start_time}}</view>
+              <view class='flex-1 primary text-right'>
+                {{item.bargain_status=="1"?"砍价中":"待付款"}}
+              </view>
+            </view>
+            <view class='flex-row listItem isRelative'>
+              <view>
+                <image src="{{item.cover}}" style='width:130rpx;height:130rpx;'></image>
+              </view>
+              <view class='flex-1' style='padding-left:28rpx;'>
+                <view class="goods-content goods-seckill-content">
+                  <view>{{ item.goods_name}}</view>
+                  <view wx:if="{{ item.model_data.model_value }}" class="goods-model">
+                    ({{ item.model_data.model_value }})
+                  </view>
+                </view>
+              </view>
+              <view class='text-right'>
+                <view style='color:#333333;font-size:30rpx;'>
+                  <text style='font-size:22rpx;'>￥</text>
+                  {{item.init_price}}
+                </view>
+                <view style='color:#999999;font-size:24rpx;'>x1</view>
+              </view>
+              <form bindsubmit="gotoOrderDetail" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}" data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-acid="{{item.id}}" data-goodsid="{{item.goods_id}}" data-orderid="{{item.bargain_status== 1 ? item.id: item.zc_order_id}}">
+                <button formType="submit" hover-class="none" class='invisibleclass'></button>
+              </form>
+            </view>
+            <view class='text-right flex-row' wx:if="{{item.bargain_status=='1'}}" style='margin-top:29rpx;'>
+              <view class='flex-1' style='color:#333333;margin-top:6rpx;'>当前价格：</view>
+              <view style='font-size:30rpx;'>￥{{item.total_price}}</view>
+            </view>
+            <view class='text-right flex-row' wx:if="{{item.bargain_status=='0'}}" style='margin-top:14rpx;' catchtap='gotoOrderDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-acid="{{item.id}}" data-goodsid="{{item.goods_id}}" data-orderid="{{item.bargain_status== 1 ? item.id: item.zc_order_id}}">
+              <view class='flex-1' style='color:#333333;margin-top:20rpx;'>最终价格：</view>
+              <view style='font-size:30rpx;margin-top:15rpx;' catchtap='gotoPay' id="{{item.id}}">
+                ￥{{item.total_price}}
+              </view>
+              <view class='flex-row' style='margin-left:43rpx;'>
+                <view class='text-center' style='border-radius:10rpx;background: #c81e27;width:127rpx;height:55rpx;line-height:55rpx;color:white;'>
+                  去支付
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="flex-row " style='margin-top:21rpx;'>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+          <view style='color:#BBBBBB;'>已经到底了</view>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-center font-70 isRelative">
+          <image class='egg' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/egg.png"></image>
+          <view class="text-center" style="color:#a3a3a3;font-size:24rpx;">
+            <text>砍价记录空空如也</text>
+          </view>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </block>
+    </view>
+    <view style='font-size:24rpx;' wx:if="{{type=='cut'&&cuttype=='F'}}">
+      <block wx:if="{{items_kanjia.length>0 && kanjia_status}}">
+        <block wx:for="{{items_kanjia}}" wx:key="key">
+          <view class='item-block white' id='{{item.id}}' style='margin-bottom:9rpx'>
+            <view class='flex-row  '>
+              <text class="cash-delivery" wx:if="{{item.is_pay_on_delivery == 1}}">货到付款</text>
+              <view style='color:#999999;'>{{item.bargain_start_time}}</view>
+              <view class='flex-1 primary text-right'>
+                {{item.bargain_status=="0"?"待付款":""}}{{item.bargain_status=="6"?"已付款":""}}{{item.bargain_status=="3"?"已结束":""}}{{item.bargain_status=="7"?"已关闭":""}}{{item.bargain_status=="5"?"退款中":""}}
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:26rpx;'></view>
+            <view class='flex-row ' style='margin-top:16rpx' catchtap='gotoOrderDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-acid="{{item.id}}" data-goodsid="{{item.goods_id}}" data-orderid="{{item.bargain_status== 1 ? item.id: item.zc_order_id}}">
+              <view>
+                <image src="{{item.cover}}" style='width:130rpx;height:130rpx;'></image>
+              </view>
+              <view class='flex-1' style='padding-left:28rpx;'>
+                <view style='color:#333333;font-size:28rpx;'>{{item.goods_name}}</view>
+                <view wx:if="{{ item.model_data.model_value }}" class="goods-model">
+                  ({{ item.model_data.model_value }})
+                </view>
+              </view>
+              <view class='text-right'>
+                <view style='color:#333333;font-size:30rpx;'>
+                  <text style='font-size:22rpx;'>￥</text>
+                  {{item.init_price}}
+                </view>
+                <view style='color:#999999;font-size:24rpx;'>x1</view>
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:22rpx;'></view>
+            <view class='text-right flex-row' style='margin-top:14rpx;' catchtap='gotoOrderDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-acid="{{item.id}}" data-goodsid="{{item.goods_id}}" data-orderid="{{item.bargain_status== 1 ? item.id: item.zc_order_id}}">
+              <view class='flex-1' style='color:#333333;margin-top:20rpx;'>最终价格：</view>
+              <view style='font-size:30rpx;margin-top:15rpx;' catchtap='gotoPay' id="{{item.id}}">
+                ￥{{item.now_price}}
+              </view>
+              <view class='flex-row' style='margin-left:43rpx;' wx:if="{{item.bargain_status=='6'}}">
+                <view class='text-center' style='border-radius:10rpx;background: #c81e27;width:127rpx;height:55rpx;color:#fff;line-height:55rpx;' catchtap='gotoOrderDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-acid="{{item.id}}" data-goodsid="{{item.goods_id}}" data-orderid="{{item.bargain_status== 1 ? item.id: item.zc_order_id}}">
+                  查看订单
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="flex-row " style='margin-top:21rpx;'>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+          <view style='color:#BBBBBB;'>已经到底了</view>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-center font-70 isRelative">
+          <image class='egg' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/egg.png"></image>
+          <view class="text-center" style="color:#a3a3a3;font-size:24rpx;">
+            <text>砍价记录空空如也</text>
+          </view>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </block>
+    </view>
+    <view style='font-size:24rpx;' wx:if="{{type=='cut'&&cuttype=='H'}}">
+      <block wx:if="{{items_myhelp.length>0}}">
+        <block wx:for="{{items_myhelp}}" wx:key="key">
+          <view class='item-block white' id='{{item.id}}' style='margin-bottom:9rpx' data-style="help">
+            <view class='flex-row  '>
+              <view style='color:#999999;'>{{item.bargain_time}}</view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:26rpx;'></view>
+            <view class='flex-row ' style='margin-top:16rpx' catchtap='gotoHelpDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-orderid="{{item.order_id}}" data-goodsid="{{item.goods_id}}">
+              <view>
+                <image src="{{item.cover}}" style='width:130rpx;height:130rpx;'></image>
+              </view>
+              <view class='flex-1' style='padding-left:28rpx;'>
+                <view style='color:#333333;font-size:28rpx;'>{{item.title}}</view>
+              </view>
+              <view class='text-right'>
+                <view style='color:#333333;font-size:30rpx;'>
+                  <text style='font-size:22rpx;'>￥</text>
+                  {{item.init_price}}
+                </view>
+                <view style='color:#999999;font-size:24rpx;'>x1</view>
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:22rpx;'></view>
+            <view>
+              <view class='flex-row'>
+                <view style='color:#333333'>发起用户：</view>
+                <view style='color:#7C7C7C'>{{item.nickname}}</view>
+              </view>
+              <view class='flex-row'>
+                <view style='color:#333333'>砍价金额</view>
+                <view class='flex-1 text-right' style='color:#7C7C7C'>-￥{{item.diff_price}}</view>
+              </view>
+              <view class='flex-row' wx:if="{{item.new_user_price>0 || item.verify_phone_price > 0}}">
+                <view style='color:#333333'>额外砍价：</view>
+                <view class='flex-1 text-right' style='color:#7C7C7C'>-￥{{item.kanExtra}}</view>
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:22rpx;'></view>
+            <view class='text-right flex-row' style='margin-top:14rpx;' catchtap='gotoHelpDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-orderid="{{item.order_id}}" data-goodsid="{{item.goods_id}}">
+              <view class='flex-1' style='color:#333333;margin-top:15rpx;'>合计砍价：</view>
+              <view style='font-size:30rpx;margin-top:10rpx;' catchtap='gotoPay' id="{{item.id}}">
+                -￥{{item.bargain_price}}
+              </view>
+              <view class='flex-row' style='margin-left:43rpx;'>
+                <view class='text-center' style='border-radius:10rpx;background: #c81e27;width:200rpx;height:55rpx;color:white;line-height:55rpx;' catchtap='gotoHelpDetail' data-bargain_id="{{item.bargain_id}}" data-style="{{item.bargain_status}}" data-orderid="{{item.order_id}}" data-goodsid="{{item.goods_id}}">
+                  发起我的砍价
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="flex-row " style='margin-top:21rpx;'>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+          <view style='color:#BBBBBB;'>已经到底了</view>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-center font-70 isRelative">
+          <image class='egg' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/egg.png"></image>
+          <view class="text-center" style="color:#a3a3a3;font-size:24rpx;">
+            <text>砍价记录空空如也</text>
+          </view>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <scroll-view wx:else style="height:100%;" lower-threshold="10" scroll-y="true" bindscrolltolower="scrolltolower" id="{{ordertype}}" data-type='{{order_type_num}}' data-maintype="order" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view style='font-size:24rpx;' wx:if="{{type=='order'}}">
+      <block wx:if="{{items_all.length>0 && items_all_tip}}">
+        <block wx:for="{{items_all}}" wx:key="key">
+          <view class='item-block white' style='margin-bottom:9rpx' catchtap='gotoOrderDetail' data-style="{{item.bargain_status}}" data-orderid="{{item.order_id}}">
+            <view class='flex-row '>
+              <text class="cash-delivery" wx:if="{{item.is_pay_on_delivery == 1}}">货到付款</text>
+              <view style='color:#999999;'>{{item.add_time}}</view>
+              <view class='flex-1 primary text-right'>
+                {{item.status=="0"?"待付款":""}}{{item.status=="1"?"待发货":""}}{{item.status=="2"?"待收货":""}}{{item.status=="3"?"待评价":""}}{{item.status=="4"?"退款审核中":""}}{{item.status=="5"?"退款中":""}}{{item.status=="6"?"已完成":""}}{{item.status=="7"?"已关闭":""}}{{item.status=="8"?"待接单":""}}
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:26rpx;'></view>
+            <view class='flex-row ' style='margin-top:16rpx'>
+              <view>
+                <image src="{{item.cover}}" style='width:130rpx;height:130rpx;'></image>
+              </view>
+              <view class='flex-1' style='padding-left:28rpx;'>
+                <view style='color:#333333;font-size:28rpx;'>{{item.goods_name}}</view>
+                <view wx:if="{{ item.model_data.model_value }}" class="goods-model">
+                  ({{ item.model_data.model_value }})
+                </view>
+              </view>
+              <view class='text-right'>
+                <view style='color:#333333;font-size:30rpx;'>
+                  <text style='font-size:22rpx;'>￥</text>
+                  {{item.init_price}}
+                </view>
+                <view style='color:#999999;font-size:24rpx;'>x1</view>
+              </view>
+            </view>
+            <view style='width:100%;height:2rpx;background:rgba(238, 238, 238, 0.5);margin-top:22rpx;'></view>
+            <view class='text-right flex-row' style='margin-top:29rpx;'>
+              <view class='flex-1' style='color:#333333;margin-top:5rpx;'>合计</view>
+              <view style='font-size:30rpx;'>￥{{item.price}}</view>
+            </view>
+            <view class="myOrder-list-bottom" wx:if="{{ item.status == 1 || item.status == 2}}">
+              <text class="btn myOrder-apply-drawback" catchtap="applyDrawback" data-franchisee="{{ item.app_id }}" data-id="{{ item.order_id }}">
+                申请退款
+              </text>
+            </view>
+          </view>
+        </block>
+        <view class="flex-row " style='margin-top:21rpx;'>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+          <view style='color:#BBBBBB;'>已经到底了</view>
+          <view class="flex-1 " style='padding-left:33rpx;padding-right:39rpx;'>
+            <view style='height:2rpx;background:#dddddd;margin-top:18rpx;'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-center font-70 isRelative">
+          <image class='egg' src="http://zhichikanjia.oss-cn-hangzhou.aliyuncs.com/egg.png"></image>
+          <view class="text-center" style="color:#a3a3a3;font-size:24rpx;">
+            <text>订单记录空空如也</text>
+          </view>
+          <form bindsubmit="formSubmit_collect" report-submit="true" class="getFormId" data-id="{{goodsInfo.id}}" data-orderid="{{goodsInfo.order_id}}" data-bargainid="{{goodsInfo.bargain_id}}">
+            <button formType="submit" hover-class="none" class='invisibleclass'></button>
+          </form>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

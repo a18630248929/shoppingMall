@@ -1,0 +1,98 @@
+page{
+  background-color:#F1F1F1;
+  color:#333333;
+}
+.debug{
+  background-color:purple;
+}.debug1{
+  background-color:azure;
+}.debug2{
+  background-color:lightsalmon;
+}
+view{
+  overflow-y: hidden;
+  font: "Microsoft YaHei" 24rpx/1.5em;
+}
+.line{
+  display:inline-block;
+}
+.flex-row{
+  position: relative;
+  display: flex;
+  display: -webkit-flex; /* Safari */
+}
+
+.flex-1{
+  flex: 1;
+}
+.text-right{
+  text-align: right;
+}
+.left{
+  float: left;
+}
+.primary{
+  color: #c81e27;
+}
+.font-9{
+  font-size: 18rpx;
+}
+.font-10{
+  font-size: 20rpx;
+}
+.font-11{
+  font-size: 24rpx;
+}
+.font-12{
+  font-size: 24rpx;
+}
+.font-13{
+  font-size: 36rpx;
+}
+.font-14{
+  font-size: 28rpx;
+}
+.font-15{
+  font-size: 30rpx;
+}
+.font-16{
+  font-size: 34rpx;
+  line-height: 32rpx;
+}
+.font-17{
+  font-size: 34rpx;
+}
+.font-18{
+  font-size: 36rpx;
+}
+.font-20{
+  font-size: 40rpx;
+}
+.font-23{
+  font-size: 46rpx;
+}
+.font-25{
+  font-size: 50rpx;
+}
+.font-35{
+  font-size: 70rpx;
+}
+
+.nobutton{
+  margin-left:unset;
+  margin-right:unset;
+  padding-left:unset;
+  padding-right:unset;
+  box-sizing:unset;
+  font-size:unset;
+  text-align:unset;
+  line-height:unset;
+  border-radius:unset;
+  overflow:unset;
+  color:unset;
+  background-color:transparent;
+}
+
+.text-center{
+  text-align: center;
+}

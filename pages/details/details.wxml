@@ -1,0 +1,209 @@
+<!-- <view class='lxsj'>联系商家</view> -->
+<import src="../first-template/first-template.wxml" />
+<view class='signin' wx:if='{{kai}}'>
+  <image src='http://p3.baiwangkeji.com/content0gow_5c9deb71d8da4?imageMogr2/thumbnail/200x/strip/quality/80/format/png' class='image'></image>
+  <button open-type='share'>确定转发</button>
+</view>
+<view class="kjdhzz" wx:if="{{isnavigation}}" bindtap='isnavigationyc'></view>
+<view class='ksdh_1 "{{isnavigation?"fast":returnss}}"' style='right:{{isnavigation?"0":"-284rpx"}};'>
+  <view class='navigation' bindtap='ksnavigation' wx:if="{{isnavigation}}">
+    <image class='fxzx' src='/pages/image/fxz.png'></image>
+    <view class='dis-clu'>
+      <view>收起</view>
+    </view>
+  </view>
+  <view class='navigation' bindtap='ksnavigation' wx:else>
+    <image class='fxzx' src='/pages/image/fxy.png'></image>
+    <view class='dis-clu'>
+      <view>快速</view>
+      <view>导航</view>
+    </view>
+  </view>
+  <view class='navigationstyle'>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/shopping-mall/shopping-mall">
+        <image src="/pages/image/dhhome.png"></image>
+        <view>首页</view>
+      </navigator>
+      <navigator class="kjlbv" url="/pages/search/search">
+        <image src="/pages/image/dhsearch.png"></image>
+        <view>搜索</view>
+      </navigator>
+    </view>
+    <view class='dis_clu'>
+      <navigator class="kjlbv" openType="reLaunch" url="/pages/personal/personal">
+        <image src="/pages/image/dhmy.png"></image>
+        <view>个人中心</view>
+      </navigator>
+      <button catchtap='click' class='anniu'>
+        <view class="kjlbv">
+          <image src="/pages/image/dhfx.png"></image>
+          <view class='share_dh'>分享赚积分</view>
+        </view>
+      </button>
+    </view>
+  </view>
+</view>
+<view></view>
+<view class='{{shoppingSwitch ? "detailsbox":""}}'>
+  <swiper style='height:750rpx;width:750rpx;' autoplay="auto" circular="true" duration="500" indicatorColor="white" indicatorDots="true" interval="5000">
+    <!-- 轮播图 -->
+    <swiper-item wx:for="{{detailsSwiper}}" wx:key>
+      <image class='lunbo' src="{{item.thumbnail}}" bindtap='detailimg' data-img='{{item.thumbnail}}'></image>
+    </swiper-item>
+  </swiper>
+  <!-- 信息 -->
+  <view class='details_information'>
+    <view class='money'>
+      <view class='xj'>￥{{detailsArr.Price}}</view>
+      <view class='yj'>￥{{detailsArr.scPrice}}</view>
+    </view>
+    <view class='text'>
+      <view>{{detailsArr.goods_title}}</view>
+      <!-- <button open-type='share'>
+        <image src='../image/fen.png' mode='widthFix'></image>
+      </button> -->
+    </view>
+    <view class='text_a'>
+      <view>快递：{{wlPrice}}</view>
+      <view>月售：{{monthlysale}}件</view>
+    </view>
+  </view>
+  <!-- 规格 -->
+  <view class='detailsSelection' catchtap='standard'>
+    <view>选择</view>
+    <text>选择选择颜色、型号、分类</text>
+    <view>
+      <image src='/pages/image/jiant.png' mode='widthFix' />
+    </view>
+  </view>
+  <view class='detailsSelection'>
+    <view>抵扣</view>
+    <text>抵扣购物积分可抵扣<text class='integral'>{{detailsArr.integral_cost_price}}</text>元 (<text class='integral'>{{detailsArr.integral_cost_ratio}}%</text>)</text>
+    <view>
+      <image src='/pages/image/jiant.png' mode='widthFix' />
+    </view>
+  </view>
+  <view class='detailsSelection'>
+    <view>赠送</view><text>购物最多赠送<text class='integral'>{{silverDelivery}}</text>银积分</text>
+    <view>
+      <image src='/pages/image/jiant.png' mode='widthFix' />
+    </view>
+  </view>
+  <view class='detailsSelection'>
+    <view>服务</view>
+    <text>假一赔十·七天退换·厂家直供·售后无忧</text>
+    <view>
+      <image src='/pages/image/jiant.png' mode='widthFix' />
+    </view>
+  </view>
+  <view class='detailsEvaluate'>
+    <view wx:if='{{commentLists.length!=0}}'>
+      <text>用户评价(好评度100%)</text>
+      <text bindtap='commentmory'>查看全部</text>
+    </view>
+    <view wx:else>暂无用户评价</view>
+  </view>
+  <view class='dis-wrap' wx:if='{{commentLists.length!=0}}'>
+    <view wx:for="{{comment}}" wx:key="this" class='comment-bq'>
+      <view>{{item.tags}}</view>
+    </view>
+  </view>
+  <view class='comment' wx:if='{{commentLists.length!=0}}'>
+    <view class='comment-1'>
+      <view class='dis-row'>
+        <image class='pltp' src="{{commentLists[0].headimgurl}}"></image>
+        <view>{{commentLists[0].nickname}}</view>
+        <view class='flo'>
+          <view wx:for="{{commentLists[0].star}}" wx:key="this">
+            <image class='comment-xx' src='/pages/image/xx.png'></image>
+          </view>
+        </view>
+      </view>
+      <view>{{commentLists[0].body}}</view>
+      <view class='comment-time'>购买时间： {{commentLists[0].addtime}}</view>
+    </view>
+  </view>
+  <!-- 店铺名称 -->
+  <view class='dis_row'>
+    <text>店铺名称：</text>
+    <image src='{{seller.shop_logo}}'></image>
+    <view>{{seller.store_name}}</view>
+  </view>
+  <!-- 商品详情富文本 -->
+  <import src="../../wxParse/wxParse.wxml" />
+  <view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</view>
+<!-- 底部购买 -->
+<view class='gm'>
+  <view class='left'>
+    <button class='anniu1' openType="contact" button-hover='none'>
+      <image class='tupian' mode="aspectFit" src="/pages/image/zx.png"></image>
+    </button>
+    <view class='zix'>咨询</view>
+  </view>
+  <view class='left sc1' catchtap='collection'>
+    <image class='sc' src='/pages/image/sc2.png' wx:if="{{!iscollection}}"></image>
+    <image class='sc' src='/pages/image/sc1.png' wx:if="{{iscollection}}"></image>
+    <view class='sc-title'>收藏</view>
+  </view>
+  <view bindtap='shoppingCart' class='shoppingCart'>加入购物车</view>
+  <view bindtap='gm' class='ljgm'>立即购买</view>
+</view>
+<!-- 遮罩 -->
+<view class="Mask" wx:if='{{shoppingSwitch}}'>
+  <view class="shoppingBottom">
+    <view class="shoppingBottom_a">
+      <image src="{{detailMap?detailMap:detailsArr.default_image}}" mode="widthFix"></image>
+      <view class="shoppingBottom_b">
+        <text style="color:red;">
+          ￥
+          <text style="font-size:50rpx;">{{Price}}</text>
+        </text>
+        <view>库存 {{goodsNowStock}} 件</view>
+        <view>请选择：{{spec_1Attr}} {{spec_2Attr}}</view>
+      </view>
+      <view class="shoppingBottom_sc" bindtap='shoppingSc'>
+        <image src="../image/sc.png" />
+      </view>
+    </view>
+    <scroll-view class='Specifications_scroll' scroll-y='true'>
+      <view class="Specifications" wx:if='{{detailsFlag}}'>
+        <view class="Spec_a">
+          <view>商品规格</view>
+          <view>
+            <text class="specText_a default">默认</text>
+          </view>
+        </view>
+      </view>
+      <view class="Specifications" wx:else>
+        <view class="Spec_a">
+          <view>{{detailsSpec[0].title}}</view>
+          <view>
+            <text wx:for="{{detailsSpec[0].items}}" wx:key class="specText_a {{inDex == index ? 'active':''}}" data-index='{{index}}' data-id='{{item.id}}' data-dataid="{{detailsSpec[0].id}}" data-title='{{item.title}}' bindtap='Specifications'>
+              {{item.title}}
+            </text>
+          </view>
+        </view>
+        <view class="Spec_b">
+          <view>{{detailsSpec[1].title}}</view>
+          <view>
+            <text wx:for="{{detailsSpec[1].items}}" wx:key class="specText_b {{inDex_a == index ? 'active':''}}" data-index='{{index}}' data-id='{{item.id}}' data-dataid="{{detailsSpec[1].id}}" data-title='{{item.title}}' bindtap='Attribute'>
+              {{item.title}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="shoppingNum">
+      <view>购买数量</view>
+      <view class="Number">
+        <view bindtap='shoppingJian'>-</view>
+        <view>{{detailsNum}}</view>
+        <view bindtap='shoppingJia'>+</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,244 @@
+/* pages/orderdetails/orderdetails.wxss */
+
+.orderDetailsPage {
+  width: 100%;
+  padding-bottom: 110rpx;
+}
+
+.detailsProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx 0 40rpx 0;
+  border-top: 1px solid #ccc;
+}
+
+.detailsProgress .dian {
+  width: 20rpx;
+  height: 20rpx;
+  background: #ccc;
+  border-radius: 20rpx;
+}
+
+.detailsProgress radio {
+  transform: scale(0.7);
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.detailsProgress .xian {
+  width: 50rpx;
+  height: 2rpx;
+  background: #ccc;
+  margin: 0 15rpx;
+}
+
+.detailsProgress .true {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rpx;
+}
+
+.detailsProgress_top {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: 25rpx;
+}
+
+.detailsProgress_top .dianBox {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailsProgress>view:nth-of-type(5) .xian {
+  width: 0;
+  margin: 0;
+  height: 0;
+}
+
+.receiving-information {
+  width: 100%;
+  background: #fff;
+  margin-top: 10rpx;
+}
+
+.receiving-information>view:nth-of-type(1) {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 20rpx;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+.receiving-information>view:nth-of-type(2) {
+  width: 100%;
+  font-size: 25rpx;
+}
+
+.receiving-information>view:nth-of-type(2) text {
+  color: #999;
+}
+
+.receiving-information>view:nth-of-type(2) view {
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.commodity-information {
+  width: 100%;
+  margin-top: 10rpx;
+  background: #fff;
+}
+
+.commodity-information>view:nth-of-type(1) {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 20rpx;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+.commodity-information>view:nth-of-type(2) {
+  width: 100%;
+  font-size: 25rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.commodity-information>view:nth-of-type(2) image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 100rpx;
+  margin-right: 20rpx;
+}
+
+.commodity-information-goods {
+  display: flex;
+  padding: 20rpx;
+  justify-content: space-between;
+  background: #f7f7f7;
+}
+
+.commodity-information-goods .img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.commodity-information-goods .text {
+  width: 60%;
+  font-size: 27rpx;
+}
+
+.commodity-information-goods .price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 27rpx;
+}
+
+.commodity-information>view:nth-of-type(4) {
+  width: 100%;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20rpx;
+}
+
+.commodity-information>view:nth-of-type(4) view {
+  border: 1px #888 solid;
+  width: 20%;
+  text-align: center;
+  padding: 10rpx;
+  font-size: 25rpx;
+  border-radius: 100rpx;
+  margin-right: 20rpx;
+}
+
+.commodity-information-money {
+  width: 100%;
+  background: #fff;
+  font-size: 25rpx;
+}
+
+.commodity-information-money view {
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commodity-information-money view text:nth-of-type(1) {
+  color: #999;
+}
+
+.order-information {
+  background: #fff;
+  margin-top: 10rpx;
+}
+
+.order-information view text:nth-of-type(1) {
+  color: #999;
+}
+
+.order-information>view:nth-of-type(1) {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 20rpx;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+.order-information>view:nth-of-type(2) view {
+  padding: 10rpx 20rpx;
+  font-size: 25rpx;
+}
+
+.order-information>view:nth-of-type(2) {
+  position: relative;
+}
+
+.order-information .copy {
+  width: 80rpx;
+  height: 20rpx;
+  border: 1px #999 solid;
+  color: #999;
+  border-radius: 50rpx;
+  line-height: 20rpx;
+  font-size: 20rpx !important;
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+}
+
+.orderDetailsPage-bottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  font-size: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.orderDetailsPage-bottom-view {
+  border: 1px solid #c81e27;
+  border-radius: 30rpx;
+  width: 150rpx;
+  height: 40rpx;
+  color: #c81e27;
+  text-align: center;
+  line-height: 40rpx;
+}

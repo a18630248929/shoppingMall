@@ -1,0 +1,9 @@
+<import src="../first-template/first-template.wxml" />
+<view class='goTop' style='display:{{yin?"flex":"none"}}'>
+  <image class='goTop-tu' src='../image/hddb.png' bindtap="goTop"></image>
+</view>
+<scroll-view scroll-y='true'>
+  <template is="swiper" data="{{banner:banner}}" />
+  <template is="Navigation" data="{{jdnavigation:jdnavigation}}" />
+  <template is="list" data="{{list:list,deviceH:deviceH,lists:lists,sort:sort,curren:curren ,paixu1:paixu1}}" />
+</scroll-view>
